@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bagxffwq2knmm"]
+
+[ext_resource type="PackedScene" uid="uid://d2fliflkypoov" path="res://Scenes/Unit.tscn" id="1_tv0pe"]
+[ext_resource type="Script" path="res://Scripts/SoldierUnit.gd" id="2_vyfam"]
+[ext_resource type="Texture2D" uid="uid://5y7bbgrdb22m" path="res://Sprites/tile_0100.png" id="4_y8ie8"]
+
+[node name="SoldierUnit" instance=ExtResource("1_tv0pe")]
+script = ExtResource("2_vyfam")
+max_health = null
+damage = null
+move_speed = null
+attack_range = null
+attack_speed = null
+is_player = true
+unit_team = null
+
+[node name="HealSprite" type="Sprite2D" parent="." index="1"]
+visible = false
+position = Vector2(-6, -16)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_y8ie8")
+
+[node name="SelectedSprite" parent="." index="2"]
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(0.333333, 0.694118, 0.364706, 1)
+position = Vector2(0, 4)
+scale = Vector2(1, 1)

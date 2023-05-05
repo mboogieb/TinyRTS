@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfde4ko33no44"]
+[gd_scene load_steps=5 format=3 uid="uid://shpskgfsjj8s"]
 
-[ext_resource type="Script" path="res://ResourceUnit.gd" id="1_30hyq"]
+[ext_resource type="Script" path="res://Scripts/ResourceUnit.gd" id="1_xxjti"]
 [ext_resource type="Texture2D" uid="uid://cjq37uvr8b14k" path="res://Sprites/resource_tree.png" id="2_f3iny"]
 [ext_resource type="Texture2D" uid="uid://bekfd4ncuejdw" path="res://Sprites/resource_rock.png" id="3_4wcff"]
 
@@ -8,7 +8,7 @@
 radius = 8.0
 
 [node name="ResourceUnit" type="CharacterBody2D"]
-script = ExtResource("1_30hyq")
+script = ExtResource("1_xxjti")
 unit_team = 2
 resource_textures = Array[Texture2D]([ExtResource("2_f3iny"), ExtResource("3_4wcff")])
 

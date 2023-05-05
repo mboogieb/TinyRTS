@@ -1,4 +1,4 @@
-extends PlayerUnit
+extends Unit
 class_name HealerUnit
 
 @export var heal_amount :int = 10

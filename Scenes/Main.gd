@@ -4,7 +4,7 @@ var selected_unit :CharacterBody2D
 var players :Array[CharacterBody2D]
 var enemies :Array[CharacterBody2D]
 var camera :Camera2D
-var curr_camera_zoom :float = 3.75
+var curr_camera_zoom :float = 2.5 #3.75
 var player_resources = {
 	Constants.ResourceType.WOOD: 0, 
 	Constants.ResourceType.STONE: 0
@@ -26,13 +26,18 @@ func _process(delta):
 		print("P: ", players)
 		print("E: ", enemies)
 		last_debug = curr_time
+	if players.is_empty() and enemies.is_empty():
+		fetch_all_units()
 
-func register_unit(team :Constants.UnitTeam, unit :CharacterBody2D):
-	if team == Constants.UnitTeam.PLAYER:
-		players.append(unit)
-	elif team == Constants.UnitTeam.ENEMY:
-		enemies.append(unit)
-	
+func fetch_all_units():
+	var unit_root = get_node("/root/Main/Units")
+	for child in unit_root.get_children():
+		if child.is_in_group("Unit"):
+			if child.unit_team == Constants.UnitTeam.PLAYER:
+				players.append(child)
+			if child.unit_team == Constants.UnitTeam.ENEMY:
+				enemies.append(child)
+
 # Select target with LMB, Attack/Heal/Move with RMB
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:

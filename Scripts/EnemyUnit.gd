@@ -1,4 +1,4 @@
-extends Unit
+extends SoldierUnit
 class_name EnemyUnit
 
 @export var detect_range :float = 100

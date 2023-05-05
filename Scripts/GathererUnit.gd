@@ -1,4 +1,4 @@
-extends PlayerUnit
+extends Unit
 class_name GathererUnit
 
 @export var resource_capacity :int = 5
