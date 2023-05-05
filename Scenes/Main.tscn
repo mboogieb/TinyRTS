@@ -381,12 +381,8 @@ resource_cache = NodePath("../../Resources/ResourceCache")
 
 [node name="SoldierUnit" parent="Units" instance=ExtResource("3_6kob1")]
 position = Vector2(261, 187)
-max_health = null
-move_speed = 120.0
-unit_team = null
 damage = 30
-attack_range = null
-attack_speed = null
+move_speed = 120.0
 
 [node name="EnemyUnit" parent="Units" instance=ExtResource("6_ekokw")]
 position = Vector2(214, -73)

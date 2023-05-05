@@ -7,10 +7,10 @@
 [node name="EnemyUnit" instance=ExtResource("1_cx22t")]
 script = ExtResource("2_wucgp")
 detect_range = 100.0
-damage = null
-move_speed = 35.0
 attack_range = null
 attack_speed = null
+damage = null
+move_speed = 35.0
 unit_team = 1
 
 [node name="ProgressBar" parent="." index="0"]

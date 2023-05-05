@@ -6,11 +6,11 @@
 
 [node name="SoldierUnit" instance=ExtResource("1_tv0pe")]
 script = ExtResource("2_vyfam")
-max_health = null
-damage = null
-move_speed = null
 attack_range = null
 attack_speed = null
+damage = null
+max_health = null
+move_speed = null
 is_player = true
 unit_team = null
 
