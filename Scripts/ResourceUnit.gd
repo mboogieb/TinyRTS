@@ -3,7 +3,7 @@ class_name ResourceUnit
 
 @export var min_start_resources :int = 100
 @export var max_start_resources :int = 1000
-@export var resource_type: Constants.ResourceType
+@export var resource_type :Constants.ResourceType
 @export var unit_team :Constants.UnitTeam
 @export var resource_textures :Array[Texture2D]
 

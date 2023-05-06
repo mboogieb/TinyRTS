@@ -1,34 +1,31 @@
 extends Node2D
 
+# Visual feedback on the ground where the selected unit is moving to
+var selected_location = load("res://Scenes/SelectedLocation.tscn")
+# Currently selected unit
 var selected_unit :CharacterBody2D
+# Collection of player units
 var players :Array[CharacterBody2D]
+# Collection of enemy units
 var enemies :Array[CharacterBody2D]
+# Scene camera
 var camera :Camera2D
 var curr_camera_zoom :float = 2.5 #3.75
+# Collection of player resources
 var player_resources = {
 	Constants.ResourceType.WOOD: 0, 
 	Constants.ResourceType.STONE: 0
 }
-#var min_camera_zoom :float = 1
-#var max_camera_zoom :float = 3
-#var camera_zoom_step :float = 0.1
-var debug_time :int = 5
-var last_debug :float
 
 func _ready():
 	camera = get_viewport().get_camera_2d()
 	camera.set_zoom(Vector2(curr_camera_zoom, curr_camera_zoom))
-	last_debug = Time.get_unix_time_from_system()
-	
+
 func _process(delta):
-	var curr_time = Time.get_unix_time_from_system()
-	if curr_time - last_debug >= debug_time:
-		print("P: ", players)
-		print("E: ", enemies)
-		last_debug = curr_time
 	if players.is_empty() and enemies.is_empty():
 		fetch_all_units()
 
+# Tally up the units if we haven't already done so
 func fetch_all_units():
 	var unit_root = get_node("/root/Main/Units")
 	for child in unit_root.get_children():
@@ -38,17 +35,13 @@ func fetch_all_units():
 			if child.unit_team == Constants.UnitTeam.ENEMY:
 				enemies.append(child)
 
-# Select target with LMB, Attack/Heal/Move with RMB
+# Select target with LMB, Attack/Heal/Move/etc with RMB
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			try_select_unit()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			try_command_unit()
-#		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-#			try_zoom_out()
-#		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-#			try_zoom_in()
 
 func get_selected_unit():
 	# Get the space state
@@ -87,25 +80,18 @@ func unselect_unit():
 	selected_unit = null
 	
 func try_command_unit():
+	# Don't do anything if a unit isn't selected
 	if selected_unit == null:
 		return
 	
 	var target = get_selected_unit()
+	# If we right click on a unit/resource/etc, set that as our target
 	if target != null:
 		selected_unit.set_target(target)
+	# Otherwise, just flash the selector at the RMB spot and move there
 	else:
-#		print("Mouse: ", get_global_mouse_position())
-		selected_unit.move_to_location(get_global_mouse_position())
-
-
-#func try_zoom_in():
-#	var next_step = curr_camera_zoom - camera_zoom_step
-#	if next_step >= min_camera_zoom:
-#		camera.set_zoom(Vector2(next_step, next_step))
-#		curr_camera_zoom = next_step
-#
-#func try_zoom_out():
-#	var next_step = curr_camera_zoom + camera_zoom_step
-#	if next_step <= max_camera_zoom:
-#		camera.set_zoom(Vector2(next_step, next_step))
-#		curr_camera_zoom = next_step
+		var mouse_position :Vector2 = get_global_mouse_position()
+		var loc = selected_location.instantiate()
+		loc.position = mouse_position
+		add_child(loc)
+		selected_unit.move_to_location(mouse_position)
