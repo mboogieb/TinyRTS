@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var debug_mode :bool = false
+
 # Visual feedback on the ground where the selected unit is moving to
 var selected_location = load("res://Scenes/SelectedLocation.tscn")
 # Currently selected unit
@@ -17,13 +19,33 @@ var player_resources = {
 	Constants.ResourceType.STONE: 0
 }
 
+var debug_timer = 5
+var last_debug = 0
+
 func _ready():
 	camera = get_viewport().get_camera_2d()
 	camera.set_zoom(Vector2(curr_camera_zoom, curr_camera_zoom))
+	
+	if debug_mode:
+		last_debug = Time.get_unix_time_from_system()
 
 func _process(delta):
 	if players.is_empty() and enemies.is_empty():
 		fetch_all_units()
+	elif enemies.is_empty():
+		print("VICTORY")
+	elif players.is_empty():
+		print("DEFEAT")
+	else:
+		enemies = recount_unit_registers(enemies)
+		players = recount_unit_registers(players)
+		
+	if debug_mode:
+		var curr_time = Time.get_unix_time_from_system()
+		if curr_time - last_debug >= debug_timer:
+			print("P: ", players)
+			print("E: ", enemies)
+			last_debug = curr_time
 
 # Tally up the units if we haven't already done so
 func fetch_all_units():
@@ -35,6 +57,13 @@ func fetch_all_units():
 			if child.unit_team == Constants.UnitTeam.ENEMY:
 				enemies.append(child)
 
+func recount_unit_registers(register :Array[CharacterBody2D]) -> Array[CharacterBody2D]:
+	var clean_array :Array[CharacterBody2D] = []
+	for unit in register:
+		if is_instance_valid(unit):
+			clean_array.append(unit)
+	return clean_array
+	
 # Select target with LMB, Attack/Heal/Move/etc with RMB
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:

@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://d02ufkyhcncbl"]
+[gd_scene load_steps=4 format=3 uid="uid://b27abhjj1hrq1"]
 
-[ext_resource type="PackedScene" uid="uid://d02dopw3kat1j" path="res://Scenes/Unit.tscn" id="1_pxarc"]
+[ext_resource type="PackedScene" uid="uid://bbu62nhrqjux6" path="res://Scenes/Unit.tscn" id="1_pxarc"]
 [ext_resource type="Script" path="res://Scripts/HealerUnit.gd" id="2_67f6c"]
-[ext_resource type="Texture2D" uid="uid://5y7bbgrdb22m" path="res://Sprites/Units/tile_0100.png" id="3_pf12h"]
+[ext_resource type="Texture2D" uid="uid://5y7bbgrdb22m" path="res://Sprites/Units/cleric.png" id="3_oei4u"]
 
 [node name="HealerUnit" instance=ExtResource("1_pxarc")]
 script = ExtResource("2_67f6c")
 heal_amount = 10
 heal_range = 80.0
 heal_speed = 1.5
+max_health = 80
 is_player = true
 
 [node name="Sprite" parent="." index="2"]
-texture = ExtResource("3_pf12h")
+texture = ExtResource("3_oei4u")

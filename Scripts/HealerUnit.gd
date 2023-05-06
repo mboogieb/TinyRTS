@@ -8,12 +8,11 @@ class_name HealerUnit
 var last_heal_time :float
 
 func _ready():
-	await get_tree().create_timer(2).timeout
 	last_heal_time = Time.get_unix_time_from_system()
+	health = max_health
 
 func _process(delta):
 	heal_check()
-	health_check()
 
 func heal_check():
 	if target != null:

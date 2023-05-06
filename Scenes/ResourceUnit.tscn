@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clsuft7pklk87"]
+[gd_scene load_steps=5 format=3 uid="uid://u178qdf3t8au"]
 
 [ext_resource type="Script" path="res://Scripts/ResourceUnit.gd" id="1_xxjti"]
-[ext_resource type="Texture2D" uid="uid://x36eajxldn0i" path="res://Sprites/Resources/tile_0028.png" id="2_7r5uu"]
+[ext_resource type="Texture2D" uid="uid://x36eajxldn0i" path="res://Sprites/Resources/tree.png" id="2_sh4lq"]
 [ext_resource type="Texture2D" uid="uid://bmn6crpyj4p44" path="res://Sprites/Resources/rock.png" id="3_lynj1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50p3t"]
@@ -9,7 +9,7 @@
 [node name="ResourceUnit" type="CharacterBody2D"]
 script = ExtResource("1_xxjti")
 unit_team = 2
-resource_textures = Array[Texture2D]([ExtResource("2_7r5uu"), ExtResource("3_lynj1")])
+resource_textures = Array[Texture2D]([ExtResource("2_sh4lq"), ExtResource("3_lynj1")])
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false

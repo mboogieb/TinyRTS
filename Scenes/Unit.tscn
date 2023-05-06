@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d02dopw3kat1j"]
+[gd_scene load_steps=5 format=3 uid="uid://bbu62nhrqjux6"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_tfgf3"]
-[ext_resource type="Texture2D" uid="uid://bf15tsoonusif" path="res://Sprites/tile_0060.png" id="3_846ca"]
-[ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/Units/tile_0096.png" id="3_nb2fs"]
+[ext_resource type="Texture2D" uid="uid://bf15tsoonusif" path="res://Sprites/UI/selector.png" id="2_loe1j"]
+[ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/Units/figher_helmet_down.png" id="3_xka2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgv7"]
 size = Vector2(14, 14)
@@ -33,10 +33,10 @@ visible = false
 modulate = Color(0.270588, 0.541176, 0.180392, 1)
 position = Vector2(0, 1)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("3_846ca")
+texture = ExtResource("2_loe1j")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_nb2fs")
+texture = ExtResource("3_xka2e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

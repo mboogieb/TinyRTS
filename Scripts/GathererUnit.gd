@@ -16,9 +16,9 @@ var curr_resource_target
 func _ready():
 	last_gather_time = Time.get_unix_time_from_system()
 	unit_state = Constants.GatherState.IDLE
+	health = max_health
 
 func _process(delta):
-	health_check()
 	match(unit_state):
 		Constants.GatherState.IDLE:
 #			print("IDLE")
