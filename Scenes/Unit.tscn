@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2fliflkypoov"]
+[gd_scene load_steps=5 format=3 uid="uid://d02dopw3kat1j"]
 
 [ext_resource type="Script" path="res://Scripts/Unit.gd" id="1_tfgf3"]
-[ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/tile_0096.png" id="2_hlk07"]
 [ext_resource type="Texture2D" uid="uid://bf15tsoonusif" path="res://Sprites/tile_0060.png" id="3_846ca"]
+[ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/Units/tile_0096.png" id="3_nb2fs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgv7"]
 size = Vector2(14, 14)
@@ -36,7 +36,7 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_846ca")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_hlk07")
+texture = ExtResource("3_nb2fs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

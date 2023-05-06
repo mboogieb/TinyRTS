@@ -1,17 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1d7kru0qywpa"]
+[gd_scene load_steps=15 format=3 uid="uid://btqkwdbsjc2v7"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_68dft"]
-[ext_resource type="Texture2D" uid="uid://bj7hdwdm7rjld" path="res://Sprites/tilemap.png" id="1_gtl3l"]
-[ext_resource type="Texture2D" uid="uid://de51a37jc2qfx" path="res://Sprites/tilemap2.png" id="2_3hjqo"]
-[ext_resource type="PackedScene" uid="uid://bagxffwq2knmm" path="res://Scenes/SoldierUnit.tscn" id="3_6kob1"]
-[ext_resource type="PackedScene" uid="uid://0vtngib25lp" path="res://Scenes/GathererUnit.tscn" id="3_r70f6"]
-[ext_resource type="PackedScene" uid="uid://q1ltyej16dos" path="res://Scenes/EnemyUnit.tscn" id="6_ekokw"]
-[ext_resource type="PackedScene" uid="uid://shpskgfsjj8s" path="res://Scenes/ResourceUnit.tscn" id="7_v63bk"]
-[ext_resource type="PackedScene" uid="uid://dqudkcmceqwj6" path="res://Scenes/ResourceCache.tscn" id="8_m84gq"]
-[ext_resource type="PackedScene" uid="uid://barswabnfs5cb" path="res://Scenes/HealerUnit.tscn" id="9_tyl7l"]
+[ext_resource type="Texture2D" uid="uid://bj7hdwdm7rjld" path="res://Sprites/Tilemaps/tilemap.png" id="2_3ba7b"]
+[ext_resource type="PackedScene" uid="uid://8j8kifh47uqp" path="res://Scenes/SoldierUnit.tscn" id="3_6kob1"]
+[ext_resource type="Texture2D" uid="uid://de51a37jc2qfx" path="res://Sprites/Tilemaps/tilemap2.png" id="3_ami2v"]
+[ext_resource type="PackedScene" uid="uid://m6hggtcfrfn8" path="res://Scenes/GathererUnit.tscn" id="3_r70f6"]
+[ext_resource type="PackedScene" uid="uid://cr51eo31shg1y" path="res://Scenes/EnemyUnit.tscn" id="6_ekokw"]
+[ext_resource type="PackedScene" uid="uid://cudv87txuhbug" path="res://Scenes/ResourceCache.tscn" id="8_m84gq"]
+[ext_resource type="PackedScene" uid="uid://clsuft7pklk87" path="res://Scenes/ResourceUnit.tscn" id="9_qfavn"]
+[ext_resource type="PackedScene" uid="uid://d02ufkyhcncbl" path="res://Scenes/HealerUnit.tscn" id="9_tyl7l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtr5u"]
-texture = ExtResource("1_gtl3l")
+texture = ExtResource("2_3ba7b")
 separation = Vector2i(1, 1)
 0:0/0 = 0
 1:0/0 = 0
@@ -147,7 +147,7 @@ separation = Vector2i(1, 1)
 11:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17v2b"]
-texture = ExtResource("2_3hjqo")
+texture = ExtResource("3_ami2v")
 separation = Vector2i(1, 1)
 0:0/0 = 0
 1:0/0 = 0
@@ -329,49 +329,7 @@ position = Vector2(-251, -74)
 
 [node name="Wood" type="Node" parent="Resources"]
 
-[node name="ResourceUnit" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-294, -178)
-
-[node name="ResourceUnit2" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-289, -166)
-
-[node name="ResourceUnit3" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-304, -173)
-
-[node name="ResourceUnit4" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-296, -155)
-
-[node name="ResourceUnit5" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-320, -36)
-
-[node name="ResourceUnit6" parent="Resources/Wood" instance=ExtResource("7_v63bk")]
-position = Vector2(-311, -28)
-
 [node name="Stone" type="Node" parent="Resources"]
-
-[node name="ResourceUnit5" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-399, -158)
-resource_type = 1
-
-[node name="ResourceUnit6" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-388, -144)
-resource_type = 1
-
-[node name="ResourceUnit7" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-401, -134)
-resource_type = 1
-
-[node name="ResourceUnit3" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-394, -62)
-resource_type = 1
-
-[node name="ResourceUnit4" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-260, 27)
-resource_type = 1
-
-[node name="ResourceUnit8" parent="Resources/Stone" instance=ExtResource("7_v63bk")]
-position = Vector2(-273, 30)
-resource_type = 1
 
 [node name="Units" type="Node" parent="."]
 
@@ -389,3 +347,10 @@ position = Vector2(214, -73)
 
 [node name="HealerUnit" parent="Units" instance=ExtResource("9_tyl7l")]
 position = Vector2(-366, 125)
+
+[node name="ResourceUnit" parent="." instance=ExtResource("9_qfavn")]
+position = Vector2(-306, -75)
+resource_type = 1
+
+[node name="ResourceUnit2" parent="." instance=ExtResource("9_qfavn")]
+position = Vector2(-311, -37)

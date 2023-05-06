@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://0vtngib25lp"]
+[gd_scene load_steps=4 format=3 uid="uid://m6hggtcfrfn8"]
 
-[ext_resource type="PackedScene" uid="uid://d2fliflkypoov" path="res://Scenes/Unit.tscn" id="1_kh6em"]
+[ext_resource type="PackedScene" uid="uid://d02dopw3kat1j" path="res://Scenes/Unit.tscn" id="1_kh6em"]
 [ext_resource type="Script" path="res://Scripts/GathererUnit.gd" id="2_a13pg"]
-[ext_resource type="Texture2D" uid="uid://ce5c2vwxs37fc" path="res://Sprites/tile_0088.png" id="3_21wtp"]
+[ext_resource type="Texture2D" uid="uid://ce5c2vwxs37fc" path="res://Sprites/Units/tile_0088.png" id="3_6m8ud"]
 
 [node name="GathererUnit" instance=ExtResource("1_kh6em")]
 script = ExtResource("2_a13pg")
@@ -15,4 +15,4 @@ move_speed = 40.0
 is_player = true
 
 [node name="Sprite" parent="." index="2"]
-texture = ExtResource("3_21wtp")
+texture = ExtResource("3_6m8ud")

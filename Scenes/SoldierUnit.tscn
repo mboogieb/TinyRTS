@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bagxffwq2knmm"]
+[gd_scene load_steps=4 format=3 uid="uid://8j8kifh47uqp"]
 
-[ext_resource type="PackedScene" uid="uid://d2fliflkypoov" path="res://Scenes/Unit.tscn" id="1_tv0pe"]
+[ext_resource type="PackedScene" uid="uid://d02dopw3kat1j" path="res://Scenes/Unit.tscn" id="1_tv0pe"]
 [ext_resource type="Script" path="res://Scripts/SoldierUnit.gd" id="2_vyfam"]
-[ext_resource type="Texture2D" uid="uid://5y7bbgrdb22m" path="res://Sprites/tile_0100.png" id="4_y8ie8"]
+[ext_resource type="Texture2D" uid="uid://5y7bbgrdb22m" path="res://Sprites/Units/tile_0100.png" id="3_dj7i7"]
 
 [node name="SoldierUnit" instance=ExtResource("1_tv0pe")]
 script = ExtResource("2_vyfam")
@@ -18,7 +18,7 @@ unit_team = null
 visible = false
 position = Vector2(-6, -16)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("4_y8ie8")
+texture = ExtResource("3_dj7i7")
 
 [node name="SelectedSprite" parent="." index="2"]
 modulate = Color(1, 1, 1, 1)
