@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btqkwdbsjc2v7"]
+[gd_scene load_steps=16 format=3 uid="uid://btqkwdbsjc2v7"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_68dft"]
 [ext_resource type="Texture2D" uid="uid://bj7hdwdm7rjld" path="res://Sprites/Tilemaps/tilemap.png" id="2_3ba7b"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2dnb8pda6n46" path="res://Scenes/ResourceCache.tscn" id="8_m84gq"]
 [ext_resource type="PackedScene" uid="uid://u178qdf3t8au" path="res://Scenes/ResourceUnit.tscn" id="9_qfavn"]
 [ext_resource type="PackedScene" uid="uid://b27abhjj1hrq1" path="res://Scenes/HealerUnit.tscn" id="9_tyl7l"]
+[ext_resource type="PackedScene" uid="uid://dywq2cp8s0tjs" path="res://Scenes/SpawnLocation.tscn" id="10_4eq03"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtr5u"]
 texture = ExtResource("2_3ba7b")
@@ -355,3 +356,10 @@ position = Vector2(-221, 142)
 [node name="SoldierUnit" parent="Units" instance=ExtResource("3_6kob1")]
 position = Vector2(179, 84)
 damage = 35
+
+[node name="SpawnLocation" parent="." instance=ExtResource("10_4eq03")]
+position = Vector2(258, -120)
+
+[node name="SpawnLocation2" parent="." instance=ExtResource("10_4eq03")]
+position = Vector2(-283, 174)
+team_unit = 0

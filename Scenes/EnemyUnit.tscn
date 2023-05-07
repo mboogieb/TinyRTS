@@ -8,8 +8,8 @@
 script = ExtResource("2_wucgp")
 detect_range = 100.0
 attack_range = 20.0
-attack_speed = 0.5
-damage = 30
+attack_speed = 0.6
+damage = 20
 move_speed = 35.0
 unit_team = 1
 
