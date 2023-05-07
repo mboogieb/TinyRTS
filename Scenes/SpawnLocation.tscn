@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dywq2cp8s0tjs"]
+
+[ext_resource type="Texture2D" uid="uid://ldsu0o7f6e3k" path="res://Sprites/UI/spawn_location.png" id="1_o2jjt"]
+[ext_resource type="Script" path="res://Scripts/SpawnLocation.gd" id="2_v5t7c"]
+
+[node name="SpawnLocation" type="Sprite2D"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_o2jjt")
+script = ExtResource("2_v5t7c")

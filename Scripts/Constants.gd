@@ -16,3 +16,8 @@ enum GatherState {
 	GATHER, 
 	DELIVER
 }
+
+const spawn_color = {
+	UnitTeam.PLAYER: Color.BLUE,
+	UnitTeam.ENEMY: Color.RED
+}
