@@ -45,16 +45,15 @@ func is_friendly(source):
 	return self.unit_team == source.unit_team
 
 func health_check():
-#	if health_bar == null:
-#		return
-		
-#	health_bar.set_max(float(max_health))
-#	health_bar.value = float(health)
 	health_bar.set_max(max_health)
 	health_bar.set_value(health)
 
-	if health >= max_health:
+	if health >= max_health * .75:
 		health_bar.modulate = Color.GREEN
+	elif health >= max_health * .5:
+		health_bar.modulate = Color.YELLOW
+	elif health >= max_health * .25:
+		health_bar.modulate = Color.ORANGE
 	else:
 		health_bar.modulate = Color.RED
 
@@ -64,7 +63,6 @@ func needs_healing():
 func take_damage(damage_amount):
 	health -= damage_amount
 	health_check()
-	print("(take_damage): ", health)
 	if health <= 0:
 		queue_free()
 		return
@@ -83,10 +81,11 @@ func heal_damage(heal_amount):
 	sprite.modulate = Color.GREEN
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE
-
+	
 # enable/disable the selection visual
 func toggle_selection_visual(toggle):
 	selection_visual.visible = toggle
 
 func toggle_heal_target_visual(toggle):
-	heal_target_visual.visible = toggle
+	#heal_target_visual.visible = toggle
+	pass

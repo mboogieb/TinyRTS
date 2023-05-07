@@ -291,9 +291,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(-192, 36, -298, 38, -316, 53, -313, 126, -203, 121, -191, 124, -192, 213, -413, 212, -411, -201, 59, -202, 61, -104, -2, -104, -24, -121, -46.6347, -107.142, -33, -62, -56, -41, -73, -91, -97, -77, -96, -197, -243, -197, -242, -62, -208, -39, -192, -39)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wk34q"]
-vertices = PackedVector2Array(84, -109, 61, -104, 60, -201, 344, -200, 343, 211, 88, -18, -191, 212, -191, 124, -182, 115, -33, -62, -69, -20, -182, 42, -193, 35, -192, -38, -129, -33, -104, -15, -56, -41)
+vertices = PackedVector2Array(84, -109, 61, -104, 59, -202, 344, -200, 343, 211, 88, -18, -192, 213, -191, 124, -182, 115, -33, -62, -69, -20, -182, 42, -192, 36, -192, -39, -129, -33, -104, -15, -56, -41)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7, 8), PackedInt32Array(9, 5, 8, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(8, 11, 15, 10), PackedInt32Array(10, 16, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-56, -41, -33, -62, 88, -18, 84, -109, 61, -104, 60, -201, 344, -200, 343, 211, -191, 212, -191, 124, -182, 115, -182, 42, -193, 35, -192, -38, -129, -33, -104, -15, -69, -20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-56, -41, -33, -62, 88, -18, 84, -109, 61, -104, 59, -202, 344, -200, 343, 211, -192, 213, -191, 124, -182, 115, -182, 42, -192, 36, -192, -39, -129, -33, -104, -15, -69, -20)])
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_68dft")
@@ -336,6 +336,8 @@ position = Vector2(-300, -153)
 
 [node name="ResourceUnit" parent="Resources/Stone" instance=ExtResource("9_qfavn")]
 position = Vector2(-321, -38)
+min_start_resources = 5
+max_start_resources = 10
 resource_type = 1
 
 [node name="Units" type="Node" parent="."]

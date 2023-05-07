@@ -2,8 +2,10 @@ extends Node2D
 
 @export var debug_mode :bool = false
 
-# Visual feedback on the ground where the selected unit is moving to
+# Visual feedback of selected unit's target
 var selected_location = load("res://Scenes/SelectedLocation.tscn")
+var enemy_location = load("res://Scenes/EnemyLocation.tscn")
+
 # Currently selected unit
 var selected_unit :CharacterBody2D
 # Collection of player units
@@ -117,10 +119,18 @@ func try_command_unit():
 	# If we right click on a unit/resource/etc, set that as our target
 	if target != null:
 		selected_unit.set_target(target)
+		if target.is_in_group("Unit") and !target.is_friendly(selected_unit):
+			flash_locator(enemy_location, target.position)
+		else:
+			flash_locator(selected_location, target.position)
 	# Otherwise, just flash the selector at the RMB spot and move there
 	else:
 		var mouse_position :Vector2 = get_global_mouse_position()
-		var loc = selected_location.instantiate()
-		loc.position = mouse_position
-		add_child(loc)
+		flash_locator(selected_location, mouse_position)
 		selected_unit.move_to_location(mouse_position)
+
+func flash_locator(locator :PackedScene, position :Vector2):
+	var _locator = locator.instantiate()
+	var body = _locator.get_node("CharacterBody2D")
+	_locator.position = position
+	add_child(_locator)

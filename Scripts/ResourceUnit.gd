@@ -1,19 +1,18 @@
-extends CharacterBody2D
+extends Unit
 class_name ResourceUnit
 
 @export var min_start_resources :int = 10
 @export var max_start_resources :int = 100
 @export var resource_type :Constants.ResourceType = Constants.ResourceType.WOOD
-@export var unit_team :Constants.UnitTeam
 @export var resource_textures :Array[Texture2D]
 
-var sprite :Sprite2D
 var resource_bar :ProgressBar
 var start_resources :int
 var current_resources :int
 
 func _ready():
-	sprite = $Sprite2D
+	unit_team = Constants.UnitTeam.NEUTRAL
+	sprite = get_node("Sprite2D")
 	resource_bar = $ProgressBar
 	sprite.set_texture(resource_textures[resource_type])
 	start_resources = randi_range(min_start_resources, max_start_resources)
