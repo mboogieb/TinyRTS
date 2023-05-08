@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/Units/figher_helmet_down.png" id="3_xka2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgv7"]
-size = Vector2(14, 14)
+size = Vector2(10, 11)
 
 [node name="Unit" type="CharacterBody2D" groups=["Unit"]]
 position = Vector2(-139, -16)
@@ -39,7 +39,7 @@ texture = ExtResource("2_loe1j")
 texture = ExtResource("3_xka2e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_dwgv7")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
