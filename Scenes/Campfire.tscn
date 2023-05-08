@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b24go5itk647"]
+
+[ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="1_ej0gk"]
+[ext_resource type="Script" path="res://Scripts/Torch.gd" id="2_3e60j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jjyb"]
+atlas = ExtResource("1_ej0gk")
+region = Rect2(238, 136, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xninn"]
+atlas = ExtResource("1_ej0gk")
+region = Rect2(255, 136, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob351"]
+atlas = ExtResource("1_ej0gk")
+region = Rect2(221, 136, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_je70q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jjyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xninn")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob351")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[node name="Campfire" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_je70q")
+animation = &"unlit"
+frame_progress = 0.224746
+script = ExtResource("2_3e60j")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cit52cafdrvqj"]
+
+[ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="1_vtk7k"]
+[ext_resource type="Script" path="res://Scripts/Torch.gd" id="2_oealp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7plxy"]
+atlas = ExtResource("1_vtk7k")
+region = Rect2(289, 119, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpoiu"]
+atlas = ExtResource("1_vtk7k")
+region = Rect2(306, 119, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaki1"]
+atlas = ExtResource("1_vtk7k")
+region = Rect2(272, 119, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dfv10"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7plxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpoiu")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaki1")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[node name="Torch_A" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dfv10")
+animation = &"unlit"
+script = ExtResource("2_oealp")
