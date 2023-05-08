@@ -3,7 +3,8 @@ Fun little side project in Godot 4
 
 # Controls
 ## Select unit
-LMB on unit to select.
+- LMB on unit to select.
+- LMB + drag to select multiple units.
 
 ## Control unit
 - All units: RMB on ground to move.
