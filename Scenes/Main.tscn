@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://btqkwdbsjc2v7"]
+[gd_scene load_steps=25 format=3 uid="uid://btqkwdbsjc2v7"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_68dft"]
 [ext_resource type="Texture2D" uid="uid://bj7hdwdm7rjld" path="res://Sprites/Tilemaps/tilemap.png" id="2_3ba7b"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://b27abhjj1hrq1" path="res://Scenes/HealerUnit.tscn" id="9_tyl7l"]
 [ext_resource type="PackedScene" uid="uid://dywq2cp8s0tjs" path="res://Scenes/SpawnLocation.tscn" id="10_4eq03"]
 [ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="11_su3l2"]
+[ext_resource type="PackedScene" uid="uid://b24go5itk647" path="res://Scenes/Campfire.tscn" id="12_7wa23"]
+[ext_resource type="FontFile" uid="uid://ctu6wvkv8vand" path="res://Fonts/Kenney Pixel.ttf" id="13_y4hs1"]
+[ext_resource type="PackedScene" uid="uid://dt6t56r61w6oa" path="res://Scenes/Banner.tscn" id="14_jaa6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtr5u"]
 texture = ExtResource("2_3ba7b")
@@ -2065,6 +2068,19 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_ce5id"]
 sources/1 = SubResource("TileSetAtlasSource_1fwxq")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_c7yqq"]
+vertices = PackedVector2Array(2207, -281, 2210, -160, 2194, -163, 2191, -193, 1800, 41, 1800, -16, 1877, -14, 1891, 3, 2193, -125, 2195, -34, 1952, -33, 2169, -125, 2150, -133, 2123, -153, 2065, -160, 1921, -131, 2012, -177, 1922, -2, 1814, -111, 1798, -111, 1798, -279, 1839, -133, 1952.2, 42.153, 2151, -197, 2138, -214, 2016, -213)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 12, 10, 14), PackedInt32Array(15, 16, 14, 10, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 4, 7, 17), PackedInt32Array(10, 22, 17), PackedInt32Array(0, 3, 23, 24), PackedInt32Array(20, 0, 24, 25), PackedInt32Array(15, 21, 20, 25, 16)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1800, 41, 1800, -16, 1877, -14, 1891, 3, 1922, -2, 1921, -131, 1839, -133, 1814, -111, 1798, -111, 1798, -279, 2207, -281, 2210, -160, 2194, -163, 2191, -193, 2151, -197, 2138, -214, 2016, -213, 2012, -177, 2065, -160, 2123, -153, 2150, -133, 2169, -125, 2193, -125, 2195, -34, 1952, -33, 1952.2, 42.153)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yqotu"]
+vertices = PackedVector2Array(2034, -33, 2195, -34, 2187, -6, 2031, 2, 2210, -160, 2208, -237, 2278, -237, 2207, -272, 2207, -281, 2301, -281, 2277, -272, 2301, 42, 2289, -35, 2196, 44, 1952, 42, 1952, 3, 2195, 0, 2229, 16, 2268, 19, 2290, -9, 2193, -125, 2210, -133)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(6, 10, 9, 11, 12), PackedInt32Array(13, 14, 15, 3), PackedInt32Array(13, 3, 2, 16), PackedInt32Array(13, 16, 17), PackedInt32Array(11, 13, 17, 18), PackedInt32Array(11, 18, 19), PackedInt32Array(12, 1, 20, 21), PackedInt32Array(21, 4, 6, 12), PackedInt32Array(12, 11, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2207, -281, 2301, -281, 2301, 42, 2196, 44, 1952, 42, 1952, 3, 2031, 2, 2034, -33, 2195, -34, 2187, -6, 2195, 0, 2229, 16, 2268, 19, 2290, -9, 2289, -35, 2195, -34, 2193, -125, 2210, -133, 2210, -160, 2208, -237, 2278, -237, 2277, -272, 2207, -272)])
+
+[sub_resource type="LabelSettings" id="LabelSettings_meudb"]
+font = ExtResource("13_y4hs1")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_68dft")
 
@@ -2085,8 +2101,8 @@ layer_1/z_index = -10
 layer_1/tile_data = PackedInt32Array(-196614, 458753, 1, -196615, 393217, 0, -131079, 393217, 2, -131078, 458753, 1, -262150, 393217, 0, -262149, 524289, 0, -196613, 524289, 2, -65542, 458753, 2, -131077, 524289, 1, -327689, 131073, 4, -262153, 131073, 5, -196617, 196609, 6, -327690, 65537, 4, -262154, 65537, 5, -196618, 65537, 6, -327691, 196609, 4, -262155, 196609, 5, -196619, 65537, 7, -327693, 1, 4, -262157, 1, 5, -196621, 1, 6, -327692, 65537, 4, -262156, 65537, 5, -196620, 65537, 6, -262151, 655361, 5, -262152, 589825, 3, -327687, 655361, 4, -393223, 655361, 4, -458759, 655361, 4, -524295, 655361, 4, -589831, 655361, 4, -655367, 655361, 4, -720903, 655361, 3, -262158, 589825, 3, -262159, 524289, 5, -720911, 524289, 3, -655375, 524289, 4, -589839, 524289, 4, -524303, 524289, 4, -458767, 524289, 4, -393231, 524289, 4, -327695, 524289, 4, -720910, 589825, 3, -720909, 589825, 3, -720908, 589825, 3, -720907, 589825, 3, -720906, 589825, 3, -720905, 589825, 3, -720904, 589825, 3, -393213, 393217, 4, -327677, 393217, 5, -262141, 458753, 6, -393214, 327681, 4, -327678, 327681, 5, -262142, 327681, 7, -393215, 262145, 4, -327679, 262145, 5, -262143, 262145, 6, -327681, 262145, 0, -262145, 262145, 1, -393218, 262145, 0, -327682, 262145, 1, -196604, 262145, 2, 262125, 262145, 4, 327661, 262145, 5, 393197, 262145, 6, 458733, 262145, 6, 262126, 327681, 4, 327662, 327681, 5, 262127, 327681, 4, 327663, 327681, 5, 262128, 458753, 4, 327664, 458753, 5, 262129, 327681, 4, 327665, 327681, 5, 262130, 327681, 4, 327666, 327681, 5, 262131, 393217, 4, 327667, 393217, 5, 393203, 458753, 6, 458739, 458753, 6, 393198, 262145, 7, 393199, 327681, 6, 393200, 262145, 7, 393201, 327681, 6, 393202, 262145, 7, 458734, 327681, 6, 458735, 327681, 6, 458736, 327681, 6, 458737, 393217, 7, 458738, 458753, 7)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-30, 7)
-zoom = Vector2(2.5, 2.5)
+position = Vector2(2108, -129)
+zoom = Vector2(3, 3)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_3lxws")
@@ -2115,7 +2131,7 @@ resource_type = 1
 [node name="Units" type="Node" parent="."]
 
 [node name="EnemyUnit" parent="Units" instance=ExtResource("6_ekokw")]
-position = Vector2(249, -73)
+position = Vector2(2259, -218)
 
 [node name="GathererUnit" parent="Units" node_paths=PackedStringArray("resource_cache") instance=ExtResource("3_r70f6")]
 position = Vector2(-300, -96)
@@ -2169,3 +2185,45 @@ layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array()
+
+[node name="Campfire2" parent="." instance=ExtResource("12_7wa23")]
+position = Vector2(2245, -197)
+is_lit = false
+
+[node name="Campfire" parent="." instance=ExtResource("12_7wa23")]
+position = Vector2(1823, 2)
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_c7yqq")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_yqotu")
+
+[node name="SoldierUnit" parent="." instance=ExtResource("3_6kob1")]
+position = Vector2(1842, 16)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 1793.0
+offset_top = -308.0
+offset_right = 1997.0
+offset_bottom = -288.0
+size_flags_horizontal = 0
+
+[node name="WoodLabel" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Wood: 0"
+label_settings = SubResource("LabelSettings_meudb")
+vertical_alignment = 1
+
+[node name="StoneLabel" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Stone: 0"
+label_settings = SubResource("LabelSettings_meudb")
+vertical_alignment = 1
+
+[node name="Banner" parent="." instance=ExtResource("14_jaa6p")]
+position = Vector2(2024, -90)
+banner_color = 4

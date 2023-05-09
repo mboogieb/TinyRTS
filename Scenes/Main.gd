@@ -14,7 +14,7 @@ var players :Array[CharacterBody2D]
 var enemies :Array[CharacterBody2D]
 # Scene camera
 var camera :Camera2D
-var curr_camera_zoom :float = 2.5 #3.75
+var curr_camera_zoom :float = 3
 # Collection of player resources
 var player_resources = {
 	Constants.ResourceType.WOOD: 0, 

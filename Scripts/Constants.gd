@@ -21,3 +21,14 @@ const spawn_color = {
 	UnitTeam.PLAYER: Color.BLUE,
 	UnitTeam.ENEMY: Color.RED
 }
+
+enum BannerColor {
+	RED,
+	ORANGE,
+	YELLOW,
+	GREEN,
+	BLUE,
+	PURPLE,
+	BLACK,
+	WHITE
+}

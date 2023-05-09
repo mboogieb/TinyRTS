@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b24go5itk647"]
+[gd_scene load_steps=8 format=3 uid="uid://b24go5itk647"]
 
 [ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="1_ej0gk"]
 [ext_resource type="Script" path="res://Scripts/Torch.gd" id="2_3e60j"]
@@ -37,8 +37,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p61rx"]
+radius = 7.0
+height = 22.0
+
 [node name="Campfire" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_je70q")
 animation = &"unlit"
 frame_progress = 0.224746
 script = ExtResource("2_3e60j")
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_p61rx")
+one_way_collision_margin = 1.7
