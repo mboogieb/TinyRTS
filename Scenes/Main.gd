@@ -2,12 +2,19 @@ extends Node2D
 
 @export var debug_mode :bool = false
 
+signal units_changed
+
 # Visual feedback of selected unit's target
 var selected_location = load("res://Scenes/SelectedLocation.tscn")
 var enemy_location = load("res://Scenes/EnemyLocation.tscn")
 
 # Currently selected units
 var selected_units :Array[CharacterBody2D]
+# Max number of units for each team
+var unit_limits :Dictionary = {
+	Constants.UnitTeam.PLAYER: 3,
+	Constants.UnitTeam.ENEMY: 3
+}
 # Collection of all active player units
 var players :Array[CharacterBody2D]
 # Collection of all active enemy units
@@ -43,7 +50,7 @@ func _ready():
 	if debug_mode:
 		last_debug = Time.get_unix_time_from_system()
 
-func _process(delta):
+func _process(_delta):
 	if players.is_empty() and enemies.is_empty():
 		fetch_all_units()
 	elif enemies.is_empty():
@@ -62,6 +69,12 @@ func _process(delta):
 			print("E: ", enemies)
 			last_debug = curr_time
 
+func unit_count(team :Constants.UnitTeam):
+	if team == Constants.UnitTeam.PLAYER:
+		return players.size()
+	if team == Constants.UnitTeam.ENEMY:
+		return enemies.size()
+		
 # Tally up the units if we haven't already done so
 func fetch_all_units():
 	var unit_root = get_node("/root/Main/Units")
@@ -69,6 +82,7 @@ func fetch_all_units():
 		if child.is_in_group("Unit"):
 			if child.unit_team == Constants.UnitTeam.PLAYER:
 				players.append(child)
+				units_changed.emit(players.size(), unit_limits[child.unit_team])
 			if child.unit_team == Constants.UnitTeam.ENEMY:
 				enemies.append(child)
 
@@ -211,8 +225,8 @@ func filter_selected_units_by_name(filter :String):
 			subset.append(unit)
 	return subset
 	
-func flash_locator(locator :PackedScene, position :Vector2):
+func flash_locator(locator :PackedScene, _position :Vector2):
 	var _locator = locator.instantiate()
 	var body = _locator.get_node("CharacterBody2D")
-	_locator.position = position
+	_locator.position = _position
 	add_child(_locator)

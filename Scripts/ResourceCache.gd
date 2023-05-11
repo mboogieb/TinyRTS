@@ -1,6 +1,8 @@
 extends Node
 class_name ResourceCache
 
+signal resources_changed
+
 var resources :Dictionary
 var sprite :Sprite2D
 
@@ -16,7 +18,10 @@ func print_cache():
 
 # Get the current count of a given resource
 func get_resource_count(resource_type):
-	return resources[resource_type]
+	if resources[resource_type] == null:
+		return 0
+	else:
+		return resources[resource_type]
 
 # Store resource bundles into the team resource cache
 func store_resources(resource_bundle :ResourceBundle):
@@ -24,6 +29,8 @@ func store_resources(resource_bundle :ResourceBundle):
 	sprite.modulate = Color.GREEN
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE
+	resources_changed.emit(resource_bundle.type, resources[resource_bundle.type])
+#	emit_signal("resource_changed", resource_bundle.type, resources[resource_bundle.type])
 
 # Tell caller if it can have the amount of ResourceType it is asking for
 func take_resources(resource_type :Constants.ResourceType, amount :int):

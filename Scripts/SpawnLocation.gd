@@ -1,15 +1,21 @@
 extends Sprite2D
 
+# How often to spawn a unit
 @export var spawn_speed = 10
+# Range for spreading out spawned units that haven't been moved
 @export var min_spawn_spread = 30
 @export var max_spawn_spread = 50
+# Which team to spawn units for
 @export var team_unit = Constants.UnitTeam.ENEMY
+
+# Unit scenes to spawn
 var enemy_unit = load("res://Scenes/EnemyUnit.tscn")
 var player_unit = load("res://Scenes/SoldierUnit.tscn")
-var spawn_sign = [-1, 1]
 
-var last_spawn
 var gm
+# For adding some randomness into unit's initial position target
+var spawn_sign = [-1, 1]
+var last_spawn
 
 func _ready():
 	gm = get_node("/root/Main")
@@ -20,8 +26,9 @@ func _process(delta):
 	spawn_check()
 
 func spawn_check():
+	var has_capacity = gm.unit_count(team_unit) < gm.unit_limits[team_unit]
 	var curr_time = Time.get_unix_time_from_system()
-	if curr_time - last_spawn >= spawn_speed:
+	if has_capacity and curr_time - last_spawn >= spawn_speed:
 		try_spawn()
 		last_spawn = curr_time
 		

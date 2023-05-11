@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpxvd61nuy8le"]
+
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="1_2oqd7"]
+[ext_resource type="FontFile" uid="uid://ctu6wvkv8vand" path="res://Fonts/Kenney Pixel.ttf" id="2_a5fei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_meudb"]
+font = ExtResource("2_a5fei")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("game_manager", "resource_manager")]
+script = ExtResource("1_2oqd7")
+game_manager = NodePath("../..")
+resource_manager = NodePath("../../Resources/ResourceCache")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="WoodLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Wood: 0"
+label_settings = SubResource("LabelSettings_meudb")
+vertical_alignment = 1
+
+[node name="StoneLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Stone: 0"
+label_settings = SubResource("LabelSettings_meudb")
+vertical_alignment = 1
+
+[node name="UnitLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Units: 0"
+label_settings = SubResource("LabelSettings_meudb")
+vertical_alignment = 1
