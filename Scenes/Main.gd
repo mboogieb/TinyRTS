@@ -39,7 +39,7 @@ var last_debug = 0
 func _ready():
 	camera = get_viewport().get_camera_2d()
 	camera.set_zoom(Vector2(curr_camera_zoom, curr_camera_zoom))
-	
+
 	if debug_mode:
 		last_debug = Time.get_unix_time_from_system()
 
@@ -81,14 +81,6 @@ func recount_unit_registers(register :Array[CharacterBody2D]) -> Array[Character
 	return clean_array
 	
 func _input(event):
-#	# Single selection
-#	if event is InputEventMouseButton:
-#		if Input.is_action_pressed("LMB"):
-#			try_select_single_unit()
-#		if Input.is_action_pressed("RMB"):
-#			try_command_units()
-
-	# Multi selection
 	if event is InputEventMouseButton:
 		if Input.is_action_pressed("LMB"):
 			try_select_single_unit()
@@ -106,37 +98,6 @@ func _input(event):
 	elif event is InputEventMouseMotion and dragging:
 		queue_redraw()
 		drag_end = get_global_mouse_position()
-
-#func _input(event):
-#	# If it is mouse input
-#	if event is InputEventMouseButton:
-#		# And it's LMB press
-#		if Input.is_action_pressed("LMB"):
-#			# Try to set the target
-#			# If there's nothing there and we have no units currently selected,
-#			# - enter dragging mode
-#			# - set the start position of the multi-unit check area
-#			try_select_single_unit()
-#			if selected_units.size() == 0:
-#				if !dragging:
-#					drag_start = get_global_mouse_position()
-#					dragging = true
-#		# And it's LMB release
-#		elif Input.is_action_just_released("LMB"):
-#			# If we're in dragging mode:
-#			# - draw the feedback area rect
-#			# - check the space for friendly units under the area
-#			if dragging:
-#				dragging = false
-#				queue_redraw()
-#				find_units_in_area()
-#				try_select_multiple_units()
-#		elif Input.is_action_pressed("RMB"):
-#			try_command_unit()
-#			selected_tmp.clear()
-#	elif event is InputEventMouseMotion and dragging:
-#		queue_redraw()
-#		drag_end = get_global_mouse_position()
 
 # Draw the multi-unit selector borders while dragging
 func _draw():
