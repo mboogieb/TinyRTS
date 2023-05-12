@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmb5vrh6gfbrx"]
+[gd_scene load_steps=5 format=3 uid="uid://bmb5vrh6gfbrx"]
 
 [ext_resource type="PackedScene" uid="uid://bbu62nhrqjux6" path="res://Scenes/Unit.tscn" id="1_kh6em"]
 [ext_resource type="Script" path="res://Scripts/GathererUnit.gd" id="2_a13pg"]
 [ext_resource type="Texture2D" uid="uid://ce5c2vwxs37fc" path="res://Sprites/Units/worker.png" id="3_eyb3t"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_il2tj"]
+radius = 4.0
+
 [node name="GathererUnit" instance=ExtResource("1_kh6em")]
+collision_mask = 26
 script = ExtResource("2_a13pg")
 resource_capacity = 5
 resource_per_fetch = 2
@@ -12,7 +16,14 @@ gather_range = 20
 gather_speed = 2.0
 max_health = 50
 move_speed = 40.0
-is_player = true
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource("3_eyb3t")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_il2tj")
+
+[node name="NavigationAgent2D" parent="." index="4"]
+path_desired_distance = 2.0
+target_desired_distance = 2.0

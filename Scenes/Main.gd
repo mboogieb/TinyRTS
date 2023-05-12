@@ -119,9 +119,9 @@ func _draw():
 		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start), Color(1, 0, 1, 1), false)
 #		draw_circle(drag_start,5,Color.BLUE)
 
-# Area check for multiple selected units within the bounds of the mouse LMB+drag window
+# Area check for multiple selected units within the bounds of the mouse LMB+drag rectangle
 # - Checks that objects are units and belong to the player
-func find_units_in_area():
+func find_units_in_rect():
 	select_rect.extents = (drag_end - drag_start) / 2
 	var space = get_world_2d().direct_space_state
 	var shape_query = PhysicsShapeQueryParameters2D.new()
@@ -140,6 +140,26 @@ func find_units_in_area():
 	select_rect = RectangleShape2D.new()
 	return _selected_units
 
+# Circular area check for any units within the given radius from the given position
+func find_units_in_circle(origin :Vector2, radius :int):
+	var search_area = CircleShape2D.new()
+	search_area.set_radius(radius)
+	var space = get_world_2d().direct_space_state
+	var shape_query = PhysicsShapeQueryParameters2D.new()
+	shape_query.set_shape(search_area)
+	shape_query.transform = Transform2D(0, origin)
+	
+	var bodies_in_range = space.intersect_shape(shape_query)
+	if bodies_in_range.is_empty():
+		return []
+	
+	var units_in_range = []
+	for body in bodies_in_range:
+		var unit = body["collider"]
+		if unit.get_parent().name == "Units":
+			units_in_range.append(unit)
+	return units_in_range
+	
 # Single point check for selected unit
 # Returns whatever is clicked
 func find_unit_at_point():
@@ -160,7 +180,7 @@ func find_unit_at_point():
 
 func try_select_multiple_units():
 	unselect_units()
-	var units_to_select = find_units_in_area()
+	var units_to_select = find_units_in_rect()
 	if units_to_select != null:
 		for unit in units_to_select:
 			selected_units.append(unit)

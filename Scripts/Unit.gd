@@ -8,9 +8,9 @@ class_name Unit
 @onready var sprite :Sprite2D = get_node("Sprite")
 
 @export var max_health :int = 100
-@export var move_speed :float = 50
-@export var is_player :bool
-@export var unit_team :Constants.UnitTeam
+@export var move_speed :float = 20
+@export var is_player :bool = true
+@export var unit_team :Constants.UnitTeam = Constants.UnitTeam.PLAYER
 
 var gm
 var last_attack_time :float
@@ -18,6 +18,7 @@ var target :CharacterBody2D
 var health :int
 
 func _ready():
+	health = max_health
 	health_check()
 
 func _physics_process(delta):
@@ -66,8 +67,7 @@ func take_damage(damage_amount):
 	if health <= 0:
 		queue_free()
 		return
-	
-
+		
 	sprite.modulate = Color.RED
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color.WHITE

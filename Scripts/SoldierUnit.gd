@@ -5,9 +5,6 @@ class_name SoldierUnit
 @export var attack_speed :float = 0.5
 @export var damage :int = 30
 
-func _ready():
-	health = max_health
-
 func _process(delta):
 	attack_check()
 

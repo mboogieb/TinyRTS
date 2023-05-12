@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c8otmhvvi32vc" path="res://Sprites/Units/cyclops.png" id="3_1bwra"]
 
 [node name="EnemyUnit" instance=ExtResource("1_cx22t")]
+collision_layer = 2
+collision_mask = 25
 script = ExtResource("2_wucgp")
 detect_range = 100.0
 attack_range = 20.0

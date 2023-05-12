@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bf15tsoonusif" path="res://Sprites/UI/selector.png" id="2_loe1j"]
 [ext_resource type="Texture2D" uid="uid://obckhm8mmwys" path="res://Sprites/Units/figher_helmet_down.png" id="3_xka2e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgv7"]
-size = Vector2(10, 11)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qs57"]
+radius = 4.03113
 
 [node name="Unit" type="CharacterBody2D" groups=["Unit"]]
 position = Vector2(-139, -16)
 script = ExtResource("1_tfgf3")
+move_speed = 40.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0, 1, 0.0156863, 1)
@@ -40,9 +41,12 @@ texture = ExtResource("3_xka2e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_dwgv7")
+shape = SubResource("CircleShape2D_7qs57")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
 target_desired_distance = 1.0
 path_max_distance = 10.0
+avoidance_enabled = true
+radius = 20.0
+neighbor_distance = 20.0
