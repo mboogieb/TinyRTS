@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ul4t7dxfdcq"]
+
+[ext_resource type="PackedScene" uid="uid://u178qdf3t8au" path="res://Scenes/ResourceUnit.tscn" id="1_eee1e"]
+[ext_resource type="Script" path="res://Scripts/ResourceUnitWood.gd" id="2_g2ftu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vm7gp"]
+radius = 9.0
+
+[node name="ResourceUnitWood" instance=ExtResource("1_eee1e")]
+script = ExtResource("2_g2ftu")
+min_start_resources = null
+max_start_resources = null
+enabled = null
+resource_type = null
+sprite_frames = null
+max_frame_offset = null
+
+[node name="ProgressBar" parent="." index="0"]
+visible = false
+
+[node name="SelectedSprite" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_vm7gp")

@@ -114,6 +114,7 @@ func gather_check():
 		curr_resource_target = target
 		var dist = global_position.distance_to(target.global_position)
 		if dist <= gather_range:
+			print("within range")
 			agent.target_position = global_position
 			try_gather_resources()
 		else:
@@ -124,8 +125,13 @@ func try_gather_resources():
 	var curr_time = Time.get_unix_time_from_system()
 	if curr_time - last_gather_time >= gather_speed:
 		var new_resources :ResourceBundle = target.try_give_resources(resource_per_fetch)
-		current_resources.append(new_resources)
-		last_gather_time = curr_time
+		if new_resources != null:
+			current_resources.append(new_resources)
+			last_gather_time = curr_time
+		else:
+			curr_resource_target = null
+			target = resource_cache
+			unit_state = Constants.GatherState.DELIVER
 
 # If we targeted the resource cache
 # - and we're within gathering range

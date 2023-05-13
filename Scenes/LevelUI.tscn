@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpxvd61nuy8le"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://Scenes/UI.gd" id="1_2oqd7"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="1_2oqd7"]
 [ext_resource type="FontFile" uid="uid://ctu6wvkv8vand" path="res://Fonts/Kenney Pixel.ttf" id="2_a5fei"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_meudb"]
@@ -17,6 +17,7 @@ resource_manager = NodePath("../../Resources/ResourceCache")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_constants/margin_left = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -40,6 +41,6 @@ vertical_alignment = 1
 [node name="UnitLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Units: 0"
+text = "Units: 0/0"
 label_settings = SubResource("LabelSettings_meudb")
 vertical_alignment = 1

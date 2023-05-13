@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjoghqb4i66fb"]
+
+[ext_resource type="PackedScene" uid="uid://u178qdf3t8au" path="res://Scenes/ResourceUnit.tscn" id="1_1imd6"]
+[ext_resource type="Script" path="res://Scripts/ResourceUnitStone.gd" id="2_3wvrn"]
+
+[node name="ResourceUnitStone" instance=ExtResource("1_1imd6")]
+script = ExtResource("2_3wvrn")
+
+[node name="ProgressBar" parent="." index="0"]
+visible = false
+offset_left = 11.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 9.0
+
+[node name="SelectedSprite" parent="." index="1"]
+visible = false
+position = Vector2(0, 0)
+scale = Vector2(1, 1)

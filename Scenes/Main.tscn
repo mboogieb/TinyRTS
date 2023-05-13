@@ -1,17 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://btqkwdbsjc2v7"]
+[gd_scene load_steps=21 format=3 uid="uid://btqkwdbsjc2v7"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_68dft"]
-[ext_resource type="PackedScene" uid="uid://bpxvd61nuy8le" path="res://Scenes/LevelUI.tscn" id="2_madct"]
+[ext_resource type="PackedScene" path="res://Scenes/LevelUI.tscn" id="2_madct"]
 [ext_resource type="PackedScene" uid="uid://clw37fsecd3or" path="res://Scenes/SoldierUnit.tscn" id="3_6kob1"]
 [ext_resource type="PackedScene" uid="uid://bmb5vrh6gfbrx" path="res://Scenes/GathererUnit.tscn" id="3_r70f6"]
+[ext_resource type="PackedScene" uid="uid://d2ul4t7dxfdcq" path="res://Scenes/ResourceUnitWood.tscn" id="5_0sklh"]
 [ext_resource type="PackedScene" uid="uid://cr7jgqpv2a7xa" path="res://Scenes/EnemyUnit.tscn" id="6_ekokw"]
+[ext_resource type="PackedScene" uid="uid://bjoghqb4i66fb" path="res://Scenes/ResourceUnitStone.tscn" id="6_wag5c"]
+[ext_resource type="Texture2D" uid="uid://b4xu6vxpcd1g7" path="res://Sprites/Resources/all_rocks.png" id="7_52j5y"]
 [ext_resource type="PackedScene" uid="uid://c2dnb8pda6n46" path="res://Scenes/ResourceCache.tscn" id="8_m84gq"]
-[ext_resource type="PackedScene" uid="uid://u178qdf3t8au" path="res://Scenes/ResourceUnit.tscn" id="9_qfavn"]
 [ext_resource type="PackedScene" uid="uid://b27abhjj1hrq1" path="res://Scenes/HealerUnit.tscn" id="9_tyl7l"]
 [ext_resource type="PackedScene" uid="uid://dywq2cp8s0tjs" path="res://Scenes/SpawnLocation.tscn" id="10_4eq03"]
 [ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="11_su3l2"]
 [ext_resource type="PackedScene" uid="uid://b24go5itk647" path="res://Scenes/Campfire.tscn" id="12_7wa23"]
 [ext_resource type="PackedScene" uid="uid://dt6t56r61w6oa" path="res://Scenes/Banner.tscn" id="14_jaa6p"]
+[ext_resource type="Texture2D" uid="uid://di776exb6bmv4" path="res://Sprites/Resources/all_trees.png" id="15_k51kl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1fwxq"]
 texture = ExtResource("11_su3l2")
@@ -1782,14 +1785,19 @@ separation = Vector2i(1, 1)
 sources/1 = SubResource("TileSetAtlasSource_1fwxq")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c7yqq"]
-vertices = PackedVector2Array(2207, -281, 2210, -160, 2194, -163, 2191, -193, 1766, -15, 1754, -73, 1799, -73, 1818, -63, 1822, -50, 1807, -36, 1952.2, 42.153, 1767, 54, 1807, -14, 1891, 3, 2193, -125, 2195, -34, 1952, -33, 2169, -125, 2150, -133, 2123, -153, 2065, -160, 1921, -131, 2012, -177, 1922, -2, 1814, -111, 1798, -111, 1798, -279, 1839, -133, 2151, -197, 2138, -214, 2016, -213, 1877, -14)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(10, 11, 4, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16), PackedInt32Array(19, 18, 16, 20), PackedInt32Array(21, 22, 20, 16, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(4, 9, 12), PackedInt32Array(0, 3, 28, 29), PackedInt32Array(26, 0, 29, 30), PackedInt32Array(21, 27, 26, 30, 22), PackedInt32Array(23, 16, 10), PackedInt32Array(13, 23, 10), PackedInt32Array(13, 12, 31)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1767, 54, 1766, -15, 1754, -73, 1799, -73, 1818, -63, 1822, -50, 1807, -36, 1807, -14, 1877, -14, 1891, 3, 1922, -2, 1921, -131, 1839, -133, 1814, -111, 1798, -111, 1798, -279, 2207, -281, 2210, -160, 2194, -163, 2191, -193, 2151, -197, 2138, -214, 2016, -213, 2012, -177, 2065, -160, 2123, -153, 2150, -133, 2169, -125, 2193, -125, 2195, -34, 1952, -33, 1952.2, 42.153)])
+vertices = PackedVector2Array(1818, -63, 1843, -57, 1834, -39, 1816, -36, 2208.09, -237.094, 2210, -160, 2194, -163, 2191, -193, 2239, -272, 2240, -237, 2207.23, -271.598, 2193, -125, 2195, -34, 1952, -33, 2169, -125, 2150, -133, 2123, -153, 2065, -160, 1921, -131, 2012, -177, 1922, -2, 1831, -115, 1808, -115, 1808, -279, 1848, -133, 1955, 71, 1716, 69, 1716, -42, 1815, -15, 2207, -281, 2138, -214, 2016, -213, 2151, -197, 1754, -73, 1799, -73, 1877, -14, 1890, -3)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 4, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 14, 13), PackedInt32Array(16, 15, 13, 17), PackedInt32Array(18, 19, 17, 13, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(23, 29, 10, 4, 30, 31), PackedInt32Array(4, 7, 32, 30), PackedInt32Array(18, 24, 23, 31, 19), PackedInt32Array(20, 13, 25), PackedInt32Array(33, 34, 0, 3, 27), PackedInt32Array(27, 3, 28), PackedInt32Array(25, 28, 35, 36), PackedInt32Array(25, 36, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1716, 69, 1716, -42, 1754, -73, 1799, -73, 1818, -63, 1843, -57, 1834, -39, 1816, -36, 1815, -15, 1877, -14, 1890, -3, 1922, -2, 1921, -131, 1848, -133, 1831, -115, 1808, -115, 1808, -279, 2207, -281, 2207.23, -271.598, 2239, -272, 2240, -237, 2208.09, -237.094, 2210, -160, 2194, -163, 2191, -193, 2151, -197, 2138, -214, 2016, -213, 2012, -177, 2065, -160, 2123, -153, 2150, -133, 2169, -125, 2193, -125, 2195, -34, 1952, -33, 1955, 71)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yqotu"]
-vertices = PackedVector2Array(2034, -33, 2195, -34, 2187, -6, 2031, 2, 2210, -160, 2208, -237, 2278, -237, 2207, -272, 2207, -281, 2301, -281, 2277, -272, 2300, 42, 2289, -35, 2196, 44, 1952, 42, 1952, 3, 2195, 0, 2229, 16, 2268, 19, 2290, -9, 2193, -125, 2210, -133)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(6, 10, 9, 11, 12), PackedInt32Array(13, 14, 15, 3), PackedInt32Array(13, 3, 2, 16), PackedInt32Array(13, 16, 17), PackedInt32Array(11, 13, 17, 18), PackedInt32Array(11, 18, 19), PackedInt32Array(12, 1, 20, 21), PackedInt32Array(21, 4, 6, 12), PackedInt32Array(12, 11, 19)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2207, -281, 2301, -281, 2300, 42, 2196, 44, 1952, 42, 1952, 3, 2031, 2, 2034, -33, 2195, -34, 2187, -6, 2195, 0, 2229, 16, 2268, 19, 2290, -9, 2289, -35, 2195, -34, 2193, -125, 2210, -133, 2210, -160, 2208, -237, 2278, -237, 2277, -272, 2207, -272)])
+vertices = PackedVector2Array(2034, -33, 2195, -34, 2187, -6, 2031, 2, 2210, -160, 2208, -237, 2278, -237, 2268, 19, 2300, 73, 1955, 71, 1953, 3, 2229, 16, 2207, -272, 2207, -281, 2301, -281, 2277, -272, 2289, -35, 2193, -125, 2210, -133, 2290, -9, 2195, 0)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(7, 8, 9, 10, 3, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(6, 15, 14, 8, 16), PackedInt32Array(16, 1, 17, 18), PackedInt32Array(18, 4, 6, 16), PackedInt32Array(19, 16, 8), PackedInt32Array(7, 19, 8), PackedInt32Array(20, 11, 3), PackedInt32Array(20, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2207, -281, 2301, -281, 2300, 73, 1955, 71, 1953, 3, 2031, 2, 2034, -33, 2195, -34, 2187, -6, 2195, 0, 2229, 16, 2268, 19, 2290, -9, 2289, -35, 2195, -34, 2193, -125, 2210, -133, 2210, -160, 2208, -237, 2278, -237, 2277, -272, 2207, -272)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ytwoc"]
+vertices = PackedVector2Array(1754, -73, 1716, -42, 1718, -280, 1808, -279, 1807, -73)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1718, -280, 1808, -279, 1807, -73, 1754, -73, 1716, -42)])
 
 [node name="Main" type="Node2D" groups=["Levels"]]
 script = ExtResource("1_68dft")
@@ -1824,14 +1832,14 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = -20
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(-524165, 1835009, 20, -589701, 1769473, 20, 65662, 1835009, 14, 65663, 1900545, 14, 65664, 1966081, 14, 131198, 1835009, 15, 131200, 1966081, 15, 131199, 1769473, 15)
 layer_3/name = "Buildings (Lo)"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = -10
-layer_3/tile_data = PackedInt32Array(-196493, 3014657, 10, -130957, 3014657, 11, -196492, 3080193, 10, -130956, 3080193, 11, -1113972, 3145729, 10, -1048436, 3145729, 11, -1113971, 3211265, 10, -1048435, 3211265, 11)
+layer_3/tile_data = PackedInt32Array(-196493, 3014657, 10, -130957, 3014657, 11, -196492, 3080193, 10, -130956, 3080193, 11, -1113972, 3145729, 10, -1048436, 3145729, 11, -1113971, 3211265, 10, -1048435, 3211265, 11, -524165, 3080193, 15, 131199, 2359297, 1, 131198, 3342337, 3, 131200, 3342337, 3)
 layer_4/name = "Building (Hi)"
 layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
@@ -1841,12 +1849,13 @@ layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array()
 
 [node name="NavigationRegion2D1" type="NavigationRegion2D" parent="Map"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_c7yqq")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Map"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_yqotu")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+navigation_polygon = SubResource("NavigationPolygon_ytwoc")
 
 [node name="Resources" type="Node" parent="."]
 
@@ -1855,16 +1864,75 @@ position = Vector2(1826, -26)
 
 [node name="Wood" type="Node" parent="Resources"]
 
-[node name="ResourceUnit2" parent="Resources/Wood" instance=ExtResource("9_qfavn")]
-position = Vector2(1995, 28)
+[node name="ResourceUnitWood" parent="Resources/Wood" instance=ExtResource("5_0sklh")]
+position = Vector2(1731, -1)
+min_start_resources = 10
+max_start_resources = 100
+enabled = true
+resource_type = 0
+resource_texture = ExtResource("15_k51kl")
+sprite_frames = Vector2i(3, 5)
+max_frame_offset = 1
+
+[node name="ResourceUnitWood2" parent="Resources/Wood" instance=ExtResource("5_0sklh")]
+position = Vector2(1760, 53)
+min_start_resources = 10
+max_start_resources = 100
+enabled = true
+resource_type = 0
+resource_texture = ExtResource("15_k51kl")
+sprite_frames = Vector2i(3, 5)
+max_frame_offset = 1
+
+[node name="ResourceUnitWood3" parent="Resources/Wood" instance=ExtResource("5_0sklh")]
+position = Vector2(1793, -86)
+min_start_resources = 10
+max_start_resources = 100
+enabled = true
+resource_type = 0
+resource_texture = ExtResource("15_k51kl")
+sprite_frames = Vector2i(3, 5)
+max_frame_offset = 1
+
+[node name="ResourceUnitWood4" parent="Resources/Wood" instance=ExtResource("5_0sklh")]
+position = Vector2(1731, 38)
+min_start_resources = 10
+max_start_resources = 100
+enabled = true
+resource_type = 0
+resource_texture = ExtResource("15_k51kl")
+sprite_frames = Vector2i(3, 5)
+max_frame_offset = 1
 
 [node name="Stone" type="Node" parent="Resources"]
 
-[node name="ResourceUnit" parent="Resources/Stone" instance=ExtResource("9_qfavn")]
-position = Vector2(1806, -53)
-min_start_resources = 5
-max_start_resources = 10
+[node name="ResourceUnitStone" parent="Resources/Stone" instance=ExtResource("6_wag5c")]
+position = Vector2(1729, -140)
+collision_layer = 8
 resource_type = 1
+resource_texture = ExtResource("7_52j5y")
+sprite_frames = Vector2i(3, 4)
+
+[node name="ResourceUnitStone2" parent="Resources/Stone" instance=ExtResource("6_wag5c")]
+position = Vector2(1739, -129)
+collision_layer = 8
+resource_type = 1
+resource_texture = ExtResource("7_52j5y")
+sprite_frames = Vector2i(3, 4)
+
+[node name="ResourceUnitStone3" parent="Resources/Stone" instance=ExtResource("6_wag5c")]
+position = Vector2(1728, -107)
+collision_layer = 8
+resource_type = 1
+resource_texture = ExtResource("7_52j5y")
+sprite_frames = Vector2i(3, 4)
+
+[node name="ResourceUnitStone4" parent="Resources/Stone" instance=ExtResource("6_wag5c")]
+position = Vector2(1731, -92)
+collision_layer = 8
+resource_type = 1
+resource_texture = ExtResource("7_52j5y")
+sprite_frames = Vector2i(3, 4)
 
 [node name="Items" type="Node" parent="."]
 

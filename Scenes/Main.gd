@@ -51,17 +51,20 @@ func _ready():
 		last_debug = Time.get_unix_time_from_system()
 
 func _process(_delta):
+	# Take roll call of all units if we haven't already
 	if players.is_empty() and enemies.is_empty():
 		fetch_all_units()
 	elif enemies.is_empty():
 		print("VICTORY")
 	elif players.is_empty():
 		print("DEFEAT")
+	# Otherwise count again
 	else:
 		enemies = recount_unit_registers(enemies)
 		players = recount_unit_registers(players)
 		selected_units = recount_unit_registers(selected_units)
-		
+	
+	# Debug mode: print all contents of unit registries
 	if debug_mode:
 		var curr_time = Time.get_unix_time_from_system()
 		if curr_time - last_debug >= debug_timer:
@@ -198,6 +201,7 @@ func select_units():
 	for _unit in selected_units:
 		_unit.toggle_selection_visual(true)
 
+# Turn on selection indicators when we LMB on a unit
 func select_unit(unit):
 	unit.toggle_selection_visual(true)
 

@@ -33,7 +33,6 @@ show_percentage = false
 visible = false
 modulate = Color(0.270588, 0.541176, 0.180392, 1)
 position = Vector2(0, 1)
-scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_loe1j")
 
 [node name="Sprite" type="Sprite2D" parent="."]
