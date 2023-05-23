@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://u178qdf3t8au"]
+[gd_scene load_steps=6 format=3 uid="uid://u178qdf3t8au"]
 
 [ext_resource type="Script" path="res://Scripts/ResourceUnit.gd" id="1_xxjti"]
 [ext_resource type="Texture2D" uid="uid://bf15tsoonusif" path="res://Sprites/UI/selector.png" id="4_r185g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oy8jt"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u7iy"]
+bg_color = Color(0.0117647, 0.560784, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50p3t"]
 
@@ -11,22 +17,22 @@ collision_mask = 0
 script = ExtResource("1_xxjti")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
 modulate = Color(0, 1, 0.0156863, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 6.0
-offset_right = 14.0
-offset_bottom = 22.0
+offset_left = -8.0
+offset_top = 11.0
+offset_right = 8.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_oy8jt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4u7iy")
 step = 1.0
 value = 100.0
-fill_mode = 3
 show_percentage = false
 
 [node name="SelectedSprite" type="Sprite2D" parent="."]

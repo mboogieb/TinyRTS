@@ -30,8 +30,9 @@ func heal_check():
 		
 # Heal friendly units that aren't at max HP
 func try_heal_target(unit_to_heal):
-	if unit_to_heal.needs_healing():
-		unit_to_heal.heal_damage(heal_amount)
+	if unit_to_heal is Unit:
+		if unit_to_heal.needs_healing():
+			unit_to_heal.heal_damage(heal_amount)
 		
 func _on_area_2d_body_entered(body):
 	if body != self:

@@ -16,10 +16,8 @@ sprite_frames = null
 max_frame_offset = null
 
 [node name="ProgressBar" parent="." index="0"]
-visible = false
-
-[node name="SelectedSprite" parent="." index="1"]
-visible = false
+offset_top = 17.0
+offset_bottom = 19.0
 
 [node name="CollisionShape2D" parent="." index="3"]
 visible = false

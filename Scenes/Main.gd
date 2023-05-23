@@ -60,9 +60,10 @@ func _process(_delta):
 		print("DEFEAT")
 	# Otherwise count again
 	else:
-		enemies = recount_unit_registers(enemies)
 		players = recount_unit_registers(players)
+		enemies = recount_unit_registers(enemies)
 		selected_units = recount_unit_registers(selected_units)
+		units_changed.emit(players.size(), unit_limits[Constants.UnitTeam.PLAYER])
 	
 	# Debug mode: print all contents of unit registries
 	if debug_mode:
@@ -71,6 +72,13 @@ func _process(_delta):
 			print("P: ", players)
 			print("E: ", enemies)
 			last_debug = curr_time
+
+func register_unit(unit, team):
+	if team == Constants.UnitTeam.PLAYER:
+		players.append(unit)
+		units_changed.emit(players.size(), unit_limits[team])
+	if team == Constants.UnitTeam.ENEMY:
+		enemies.append(unit)
 
 func unit_count(team :Constants.UnitTeam):
 	if team == Constants.UnitTeam.PLAYER:
@@ -90,10 +98,11 @@ func fetch_all_units():
 				enemies.append(child)
 
 # Removes scene units removed by queue_free()
+# NOTE: unit must already be in the register in order to be included in the count
 func recount_unit_registers(register :Array[CharacterBody2D]) -> Array[CharacterBody2D]:
 	var clean_array :Array[CharacterBody2D] = []
 	for unit in register:
-		if is_instance_valid(unit):
+		if unit != null && is_instance_valid(unit):
 			clean_array.append(unit)
 	return clean_array
 	

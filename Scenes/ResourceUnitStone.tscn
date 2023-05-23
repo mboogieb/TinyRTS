@@ -7,13 +7,9 @@
 script = ExtResource("2_3wvrn")
 
 [node name="ProgressBar" parent="." index="0"]
-visible = false
-offset_left = 11.0
-offset_top = -7.0
-offset_right = 15.0
+offset_top = 7.0
 offset_bottom = 9.0
 
 [node name="SelectedSprite" parent="." index="1"]
-visible = false
 position = Vector2(0, 0)
 scale = Vector2(1, 1)

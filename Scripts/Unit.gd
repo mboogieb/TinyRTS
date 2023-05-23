@@ -28,6 +28,18 @@ func _physics_process(delta):
 		return
 		
 	var direction = global_position.direction_to(agent.get_next_path_position())
+#	print("Unit dir: ", direction, "[", round(direction.x), ",", round(direction.y), "]")
+	
+	# TODO: Direction scale from -1 <= x <= 1, -1 <=
+	# Full north: 0, -1
+	# Full south: 0, 1
+	# Full East: 1, 0
+	# Full West: -1, 0
+	var angle = atan2(snappedf(direction.y, 0.5), snappedf(direction.x, 0.5))
+	
+	var prelim = (angle * 2 / PI)
+	var cardinal_direction = (snappedi(prelim, 1) % 4)
+#	print("Compass: ", cardinal_direction)
 	velocity = direction * move_speed
 	move_and_slide()
 
