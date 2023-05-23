@@ -40,5 +40,4 @@ func take_resources(resource_type :Constants.ResourceType, amount :int):
 		sprite.modulate = Color.RED
 		await get_tree().create_timer(0.1).timeout
 		sprite.modulate = Color.WHITE
-		return true
-	return false
+		resources_changed.emit(resource_type, resources[resource_type])

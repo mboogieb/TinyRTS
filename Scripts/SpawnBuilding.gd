@@ -8,6 +8,7 @@ class_name SpawnBuilding
 
 @export var unit_team :Constants.UnitTeam = Constants.UnitTeam.PLAYER
 @export var spawn_type :Constants.UnitType = Constants.UnitType.SOLDIER
+@export var spawn_cost :SummonsBundle
 @export var max_health :int = 100
 @export var spawn_speed :int = 10
 @export var max_queue_size :int = 4
@@ -55,7 +56,15 @@ func _input(event):
 	if Input.is_action_just_pressed("DEBUG_BUILD"):
 		advance_construction(25)
 		
-	if Input.is_action_just_pressed("DEBUG_ADD_SPAWN"):
+	if Input.is_action_just_pressed("DEBUG_SPAWN_HEALER") and self.name == "Priory":
+		if build_queue.size() < max_queue_size:
+			build_queue.append(spawn_unit)
+			check_queue_label()
+	elif Input.is_action_just_pressed("DEBUG_SPAWN_SOLDIER") and self.name == "Barracks":
+		if build_queue.size() < max_queue_size:
+			build_queue.append(spawn_unit)
+			check_queue_label()
+	elif Input.is_action_just_pressed("DEBUG_SPAWN_LABORER") and self.name == "Tent":
 		if build_queue.size() < max_queue_size:
 			build_queue.append(spawn_unit)
 			check_queue_label()
@@ -67,8 +76,7 @@ func find_scene_to_spawn():
 	elif unit_team == Constants.UnitTeam.ENEMY:
 		spawn_unit = load(Constants.enemy_unit_scenes[spawn_type])
 		
-# Ask the game if this building can spawn a unit
-# If the spawn timer has expired, attempt to spawn unit
+# Attempt to spawn if our spawn timer is timed out
 func spawn_check():
 	var curr_time = Time.get_unix_time_from_system()
 	if curr_time - spawn_timer_start >= spawn_speed:
@@ -76,11 +84,15 @@ func spawn_check():
 	else:
 		build_bar.set_value(curr_time - spawn_timer_start)
 		
-# Instantiate the new unit
-# Add as child to the tree
-# Move to semi-random location
+# If we have team capacity, and we have the resources to spend:
+# Spawn a new unit instace and let it wander a little bit
 func try_spawn():
 	if gm.unit_count(unit_team) < gm.unit_limits[unit_team]:
+		if resources_confirmed():
+			spend_resources()
+		else:
+			return
+		
 		var x_var = randi_range(min_spawn_spread, max_spawn_spread) * spawn_sign[randi() % spawn_sign.size()]
 		var y_var = randi_range(min_spawn_spread, max_spawn_spread) * spawn_sign[randi() % spawn_sign.size()]
 		var new_unit = null
@@ -99,6 +111,18 @@ func try_spawn():
 		is_spawning = false
 		build_queue.remove_at(0)
 		check_queue_label()
+
+# Check that all required resources are available
+func resources_confirmed():
+	for bundle in spawn_cost.cost:
+		if bundle.amount > resource_cache.get_resource_count(bundle.type):
+			return false
+	return true
+
+# Spend all required resources to summon
+func spend_resources():
+	for bundle in spawn_cost.cost:
+		resource_cache.take_resources(bundle.type, bundle.amount)
 
 func health_check():
 	if health >= max_health * .75:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dv7d0amjwf55b"]
+[gd_scene load_steps=25 format=3 uid="uid://3qgd5gfyd1i8"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_68dft"]
 [ext_resource type="PackedScene" uid="uid://vut1ewk80fyp" path="res://Scenes/LevelUI.tscn" id="2_madct"]
@@ -11,11 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://dywq2cp8s0tjs" path="res://Scenes/SpawnLocation.tscn" id="10_4eq03"]
 [ext_resource type="Texture2D" uid="uid://kgwyo4sef0o2" path="res://Sprites/Tilemaps/roguelikeSheet_transparent.png" id="11_su3l2"]
 [ext_resource type="PackedScene" uid="uid://b24go5itk647" path="res://Scenes/Campfire.tscn" id="12_7wa23"]
+[ext_resource type="Resource" uid="uid://urxapfvdvga0" path="res://Resources/Summons/Cleric.tres" id="13_de5u5"]
 [ext_resource type="PackedScene" uid="uid://dt6t56r61w6oa" path="res://Scenes/Banner.tscn" id="14_jaa6p"]
 [ext_resource type="Texture2D" uid="uid://di776exb6bmv4" path="res://Sprites/Resources/all_trees.png" id="15_k51kl"]
+[ext_resource type="Resource" uid="uid://d4j02hmnqcela" path="res://Resources/Summons/Laborer.tres" id="15_odims"]
 [ext_resource type="PackedScene" uid="uid://bpabt2gx7tdgd" path="res://Scenes/Tent.tscn" id="16_b4f55"]
 [ext_resource type="PackedScene" uid="uid://de8thonh4bimu" path="res://Scenes/Priory.tscn" id="16_irl1n"]
 [ext_resource type="PackedScene" uid="uid://bme4qv66ixic3" path="res://Scenes/Barracks.tscn" id="17_6aa8v"]
+[ext_resource type="Resource" uid="uid://b06ad8fueuvma" path="res://Resources/Summons/Soldier.tres" id="17_32oll"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1fwxq"]
 texture = ExtResource("11_su3l2")
@@ -1908,7 +1911,7 @@ max_frame_offset = 1
 [node name="Stone" type="Node" parent="Resources"]
 
 [node name="ResourceUnitStone" parent="Resources/Stone" instance=ExtResource("6_wag5c")]
-position = Vector2(1729, -140)
+position = Vector2(1825, 62)
 collision_layer = 8
 resource_type = 1
 resource_texture = ExtResource("7_52j5y")
@@ -1958,12 +1961,15 @@ can_heal = true
 [node name="Priory" parent="Buildings" instance=ExtResource("16_irl1n")]
 position = Vector2(1741, -48)
 spawn_type = 1
+spawn_cost = ExtResource("13_de5u5")
 
 [node name="Tent" parent="Buildings" instance=ExtResource("16_b4f55")]
 position = Vector2(1856, -34)
+spawn_cost = ExtResource("15_odims")
 
 [node name="Barracks" parent="Buildings" instance=ExtResource("17_6aa8v")]
 position = Vector2(1995, 5)
+spawn_cost = ExtResource("17_32oll")
 
 [node name="Units" type="Node" parent="."]
 

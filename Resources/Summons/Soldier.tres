@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SummonsBundle" load_steps=5 format=3 uid="uid://b06ad8fueuvma"]
+
+[ext_resource type="Script" path="res://Scripts/ResourceBundle.gd" id="1_d2qv0"]
+[ext_resource type="Script" path="res://Scripts/SummonsBundle.gd" id="1_vcx46"]
+
+[sub_resource type="Resource" id="Resource_0yp4v"]
+script = ExtResource("1_d2qv0")
+type = 0
+amount = 5
+
+[sub_resource type="Resource" id="Resource_ga2ia"]
+script = ExtResource("1_d2qv0")
+type = 1
+amount = 5
+
+[resource]
+script = ExtResource("1_vcx46")
+team = 0
+unit = 0
+cost = Array[ExtResource("1_d2qv0")]([SubResource("Resource_0yp4v"), SubResource("Resource_ga2ia")])

@@ -6,25 +6,34 @@ Fun little side project in Godot 4
 - LMB on unit to select.
 - LMB + drag to select multiple units.
 
-## Control unit
-- All units: RMB on ground to move.
-- Soldier: RMB on enemy to attack. Will fight to the death unless canceled.
-- Healer: N/A - heals all units in range.
-- Gatherer: RMB on tree/rock to harvest resources. Will travel between selected resource and designated drop off until canceled or node is depleted.
+## Command unit
+- RMB to command unit(s)
 
-## Buildings
-- Barracks: Summons soldiers
-- Priory: Summons clerics
-- Tent: Summons gatherers
+# Units
+## Soldier
+- Resource Costs: 5x wood, 5x stone
+- Command: RMB on enemy to attack. Will fight to the death unless canceled.
+- Spawns from: Barracks
+- Press 'E' to start summon.
 
-## Notes
-- Construction and summons are not ready. 
-	- Tap 'B' key repeatedly to finish each building.
-	- Tap 'Q' key to queue a unit summons for each building.
-- Player team limits are in effect. Summon queues will produce a unit when team capacity allows it.
+## Cleric
+- Resource Costs: 6x wood, 6x stone
+- Command: RMB on ground to move to location. Will heal friendly units within range.
+- Spawns from: Priory
+- Press 'Q' to start summon.
+
+## Laborer
+- Resource Costs: 3x wood, 3x stone
+- Command: RMB on rock or tree to begin harvesting corresponding resource. Will continue to travel between selected resource and drop off until canceled or node is depleted.
+- Spawns from: Tent
+- Press 'W' to start summon
+
+# Notes
+- Building construction is not finished. Tap 'B' key repeatedly to complete construction for all buildings.
+- Player team limits are in effect, but players can buffer the spawn queue. Buildings will produce a unit when team capacity and/or resources can support it.
 
 ## Coming Soon
-- Building construction & unit summons will cost resources.
-- Gatherer unit will also be able to construct buildings.
+- Laborer will also be able to construct buildings.
+- Building construction will cost resources.
 - Summon units from building UI panel.
 - Buildings can be destroyed.
