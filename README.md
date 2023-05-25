@@ -6,11 +6,11 @@ Fun little side project in Godot 4
 - LMB on unit to select.
 - LMB + drag to select multiple units.
 ## Construct building
-###Propose building site:
+### Propose building site:
 - 1: Build priory
 - 2: Build tent
 - 3: Build barracks
-###Placement
+### Placement
 - LMB on valid location
 ## Summon units
 - Q: summon cleric
