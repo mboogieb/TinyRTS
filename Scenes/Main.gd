@@ -43,6 +43,10 @@ var select_rect = RectangleShape2D.new()
 var debug_timer = 5
 var last_debug = 0
 
+var building_mode :bool = false
+var proposed_building :PackedScene
+var current_building :StaticBody2D
+
 func _ready():
 	camera = get_viewport().get_camera_2d()
 	camera.set_zoom(Vector2(curr_camera_zoom, curr_camera_zoom))
@@ -107,6 +111,11 @@ func recount_unit_registers(register :Array[CharacterBody2D]) -> Array[Character
 	return clean_array
 	
 func _input(event):
+	if building_mode:
+		if current_building != null:
+			current_building.position = get_global_mouse_position()
+		if Input.is_action_pressed("LMB"):
+			select_building_site(Constants.BuildingType.PRIORY, get_global_mouse_position())
 	if event is InputEventMouseButton:
 		if Input.is_action_pressed("LMB"):
 			try_select_single_unit()
@@ -124,7 +133,18 @@ func _input(event):
 	elif event is InputEventMouseMotion and dragging:
 		queue_redraw()
 		drag_end = get_global_mouse_position()
-
+	elif Input.is_action_just_pressed("DEBUG_BUILD_PRIORY") and not building_mode:
+		building_mode = true
+		construction_check(Constants.BuildingType.PRIORY)
+	elif Input.is_action_just_pressed("DEBUG_BUILD_TENT") and not building_mode:
+		building_mode = true
+		construction_check(Constants.BuildingType.TENT)
+	elif Input.is_action_just_pressed("DEBUG_BUILD_BARRACKS") and not building_mode:
+		building_mode = true
+		construction_check(Constants.BuildingType.BARRACKS)
+	elif Input.is_action_pressed("DEBUG_BACKUP") and building_mode:
+		Input.set_custom_mouse_cursor(null)
+		building_mode = false
 # Draw the multi-unit selector borders while dragging
 func _draw():
 	if dragging:
@@ -190,6 +210,25 @@ func find_unit_at_point():
 	var item = selected_objects[0]
 	return item["collider"]
 
+# Used to check if proposed building site is valid (any other colliders at same position)
+# Query position is mouse position with offset calculated for the bulding spawn location node
+func find_all_bodies_at_point():
+	var space = get_world_2d().direct_space_state
+	var point_query = PhysicsPointQueryParameters2D.new()
+	point_query.position = current_building.get_node("SpawnPoint").position
+	var mouse_pos = get_global_mouse_position()
+	var spawn_pos = current_building.get_node("SpawnPoint")
+	point_query.position = Vector2(mouse_pos.x + spawn_pos.position.x, mouse_pos.y + spawn_pos.position.y)
+	var selected_objects = space.intersect_point(point_query)
+	if selected_objects.is_empty():
+		return []
+	var bodies_in_range = []
+	for body in selected_objects:
+		var collider = body["collider"]
+		if collider.name != current_building.name:
+			bodies_in_range.append(collider)
+	return bodies_in_range
+	
 func try_select_multiple_units():
 	unselect_units()
 	var units_to_select = find_units_in_rect()
@@ -231,7 +270,7 @@ func try_command_units():
 	var target = find_unit_at_point()
 	if target != null:
 		if target.name.contains("ResourceUnit"):
-			var gatherers = filter_selected_units_by_name("GathererUnit")
+			var gatherers = filter_selected_units_by_name("LaborerUnit")
 			for unit in gatherers:
 				unit.set_target(target)
 			flash_locator(selected_location, target.position)
@@ -263,3 +302,28 @@ func flash_locator(locator :PackedScene, _position :Vector2):
 	var body = _locator.get_node("CharacterBody2D")
 	_locator.position = _position
 	add_child(_locator)
+
+func select_building_site(building_type :Constants.BuildingType, position :Vector2):
+	var obstruction_check = find_all_bodies_at_point()
+	if obstruction_check.is_empty():
+		building_mode = false
+		current_building = null
+
+func construction_check(building_type :Constants.BuildingType):
+		building_mode = true
+		proposed_building = load(Constants.player_building_scenes[building_type])
+		current_building = proposed_building.instantiate()
+		if not verify_construction_costs_covered():
+			building_mode = false
+			return
+		current_building.position = get_global_mouse_position()
+		get_node("Buildings").add_child(current_building)
+
+# Before we render the desired building, confirm we have the funds to pay for it
+func verify_construction_costs_covered():
+	var resource_cache :ResourceCache = get_node("Resources/ResourceCache")
+	var wood_stash = resource_cache.get_resource_count(Constants.ResourceType.WOOD)
+	for res in current_building.construction_cost.cost:
+		if res.amount > resource_cache.get_resource_count(res.type):
+			return false
+	return true

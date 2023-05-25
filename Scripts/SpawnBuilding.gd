@@ -1,24 +1,30 @@
 extends StaticBody2D
 class_name SpawnBuilding
 
+signal team_capacity_changed
+
 @onready var health_bar :ProgressBar = get_node("HealthBar")
 @onready var build_bar :ProgressBar = get_node("BuildBar")
 @onready var queue_label :Label = get_node("QueueLabel")
 @onready var spawn_point :Node2D = get_node("SpawnPoint")
+@onready var active_sprite :Sprite2D = get_node("ActiveSprite")
+@onready var construction_sprite :Sprite2D = get_node("ConstructionSprite")
 
 @export var unit_team :Constants.UnitTeam = Constants.UnitTeam.PLAYER
 @export var spawn_type :Constants.UnitType = Constants.UnitType.SOLDIER
+@export var is_built :bool = false
+@export var construction_cost :SummonsBundle
 @export var spawn_cost :SummonsBundle
 @export var max_health :int = 100
 @export var spawn_speed :int = 10
 @export var max_queue_size :int = 4
+@export var unit_capacity_added :int = 3
 # Range for spreading out spawned units that haven't been moved
-@export var min_spawn_spread = 30
-@export var max_spawn_spread = 50
+@export var min_spawn_spread = 20
+@export var max_spawn_spread = 40
 
 var gm
 var resource_cache
-var is_built = false
 var is_spawning = false
 var build_queue :Array[PackedScene] = []
 var max_construction :int = 100
@@ -32,14 +38,24 @@ var spawn_sign = [-1, 1]
 func _ready():
 	gm = get_node("/root/Main")
 	resource_cache = gm.get_node("Resources/ResourceCache")
-	find_scene_to_spawn()
-	is_built = false
-	health = 0
+	
+	if not is_built:
+		health = 0
+		health_bar.set_max(max_construction)
+		build_bar.set_max(max_construction)
+		health_bar.set_value(curr_construction)
+	else:
+		health = max_health
+		health_bar.set_max(max_health)
+		build_bar.set_max(spawn_speed)
+		health_check()
+		
 	curr_construction = 0
-	health_bar.set_max(max_construction)
-	build_bar.set_max(max_construction)
-	health_bar.set_value(curr_construction)
 	build_bar.set_value(curr_construction)
+	construction_sprite.visible = not is_built
+	active_sprite.visible = is_built
+	
+	find_scene_to_spawn()
 
 func _process(delta):
 	if is_built:
@@ -53,9 +69,9 @@ func _process(delta):
 	check_queue_label()
 		
 func _input(event):
-	if Input.is_action_just_pressed("DEBUG_BUILD"):
+	if Input.is_action_just_pressed("DEBUG_BUILD_ALL") and not is_built:
 		advance_construction(25)
-		
+	# TODO: Delete this when construction from UI is implemented
 	if Input.is_action_just_pressed("DEBUG_SPAWN_HEALER") and self.name == "Priory":
 		if build_queue.size() < max_queue_size:
 			build_queue.append(spawn_unit)
@@ -165,14 +181,17 @@ func advance_construction(amount):
 		build_bar.set_value(curr_construction)
 		
 		if curr_construction >= max_construction:
+			is_built = true
 			finalize_construction()
 
 # Construction is complete - initialize everything for normal building usage
 func finalize_construction():
-	is_built = true
-	health_bar.set_max(max_health)
-	build_bar.set_max(spawn_speed)
-	build_bar.set_value(0)
+	if is_built:
+		health_bar.set_max(max_health)
+		build_bar.set_max(spawn_speed)
+		build_bar.set_value(0)
+		construction_sprite.visible = false
+		active_sprite.visible = true
 	
 func destroy_building():
 	queue_free()

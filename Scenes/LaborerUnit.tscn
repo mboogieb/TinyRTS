@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmb5vrh6gfbrx"]
+[gd_scene load_steps=5 format=3 uid="uid://bcnvebd5mhffx"]
 
 [ext_resource type="PackedScene" uid="uid://bbu62nhrqjux6" path="res://Scenes/Unit.tscn" id="1_kh6em"]
-[ext_resource type="Script" path="res://Scripts/GathererUnit.gd" id="2_a13pg"]
+[ext_resource type="Script" path="res://Scripts/Laborer.gd" id="2_b7xm6"]
 [ext_resource type="Texture2D" uid="uid://y4txm8ikmo8b" path="res://Sprites/Units/craftsman.png" id="3_bjdkk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_il2tj"]
 radius = 4.0
 
-[node name="GathererUnit" instance=ExtResource("1_kh6em")]
+[node name="LaborerUnit" instance=ExtResource("1_kh6em")]
 collision_mask = 26
-script = ExtResource("2_a13pg")
+script = ExtResource("2_b7xm6")
 resource_capacity = 5
 resource_per_fetch = 2
 gather_range = 20

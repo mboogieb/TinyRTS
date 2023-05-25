@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bme4qv66ixic3"]
+[gd_scene load_steps=10 format=3 uid="uid://bme4qv66ixic3"]
 
 [ext_resource type="Script" path="res://Scripts/SpawnBuilding.gd" id="1_mpi8x"]
+[ext_resource type="Resource" uid="uid://b06ad8fueuvma" path="res://Resources/Summons/Soldier.tres" id="2_38rnn"]
+[ext_resource type="Resource" uid="uid://loedd3spndbe" path="res://Resources/Construction/Barracks.tres" id="2_45otd"]
 [ext_resource type="Texture2D" uid="uid://cdaw28uixyhc5" path="res://Sprites/Barracks.png" id="2_gkm0f"]
+[ext_resource type="Texture2D" uid="uid://d3js0ap46lesx" path="res://Sprites/Barracks_Construction.png" id="3_tqrtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r08ch"]
 size = Vector2(41, 24)
@@ -19,9 +22,15 @@ bg_color = Color(0.188235, 0, 0.929412, 1)
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_mpi8x")
+construction_cost = ExtResource("2_45otd")
+spawn_cost = ExtResource("2_38rnn")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="ActiveSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_gkm0f")
+
+[node name="ConstructionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_tqrtw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2)
