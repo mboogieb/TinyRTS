@@ -10,6 +10,7 @@ const unit_prefix = "Units: "
 var wood_label :Label
 var stone_label :Label
 var unit_label :Label
+var buildings_found :int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -12,6 +12,17 @@ func _ready():
 	for value in Constants.ResourceType.values():
 		resources[value] = 0
 
+func _input(event):
+	if Input.is_action_just_pressed("DEBUG_GAIN_WOOD"):
+		var bundle :ResourceBundle = ResourceBundle.new()
+		bundle.type = Constants.ResourceType.WOOD
+		bundle.amount = 100
+		store_resources(bundle)
+	if Input.is_action_just_pressed("DEBUG_GAIN_STONE"):
+		var bundle :ResourceBundle = ResourceBundle.new()
+		bundle.type = Constants.ResourceType.STONE
+		bundle.amount = 100
+		store_resources(bundle)
 # Print the entire cache contents
 func print_cache():
 	print("Cache: ", resources)

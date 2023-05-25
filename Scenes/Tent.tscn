@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpabt2gx7tdgd"]
+[gd_scene load_steps=10 format=3 uid="uid://bpabt2gx7tdgd"]
 
 [ext_resource type="Script" path="res://Scripts/SpawnBuilding.gd" id="1_umjir"]
+[ext_resource type="Resource" uid="uid://db7a4715nrd6r" path="res://Resources/Construction/Tent.tres" id="2_7a8hb"]
+[ext_resource type="Resource" uid="uid://d4j02hmnqcela" path="res://Resources/Summons/Laborer.tres" id="2_66a4t"]
 [ext_resource type="Texture2D" uid="uid://diyfxgchsgbtx" path="res://Sprites/Tent.png" id="2_dv7uf"]
+[ext_resource type="Texture2D" uid="uid://cwg4d3fswk35n" path="res://Sprites/Tent_Construction.png" id="3_cocmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r08ch"]
 size = Vector2(31, 23)
@@ -20,9 +23,15 @@ collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_umjir")
 spawn_type = 2
+construction_cost = ExtResource("2_7a8hb")
+spawn_cost = ExtResource("2_66a4t")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="ActiveSprite" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_dv7uf")
+
+[node name="ConstructionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_cocmu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4.5)
@@ -67,6 +76,7 @@ value = 10.0
 show_percentage = false
 
 [node name="QueueLabel" type="Label" parent="."]
+visible = false
 offset_left = 7.0
 offset_top = -25.0
 offset_right = 24.0

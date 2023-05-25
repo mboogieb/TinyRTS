@@ -1,5 +1,5 @@
 extends Unit
-class_name GathererUnit
+class_name LaborerUnit
 
 # How many resource bundles we can carry
 @export var resource_capacity :int = 5
