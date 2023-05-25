@@ -143,7 +143,8 @@ func _input(event):
 		building_mode = true
 		construction_check(Constants.BuildingType.BARRACKS)
 	elif Input.is_action_pressed("DEBUG_BACKUP") and building_mode:
-		Input.set_custom_mouse_cursor(null)
+		refund_construction_costs()
+		current_building.queue_free()
 		building_mode = false
 # Draw the multi-unit selector borders while dragging
 func _draw():
@@ -321,9 +322,15 @@ func construction_check(building_type :Constants.BuildingType):
 
 # Before we render the desired building, confirm we have the funds to pay for it
 func verify_construction_costs_covered():
-	var resource_cache :ResourceCache = get_node("Resources/ResourceCache")
-	var wood_stash = resource_cache.get_resource_count(Constants.ResourceType.WOOD)
+	var resource_cache :ResourceCache = get_node("Resources/ResourceCache")	
 	for res in current_building.construction_cost.cost:
 		if res.amount > resource_cache.get_resource_count(res.type):
 			return false
+		else:
+			resource_cache.take_resources(res.type, res.amount)
 	return true
+
+func refund_construction_costs():
+	var resource_cache :ResourceCache = get_node("Resources/ResourceCache")	
+	for res in current_building.construction_cost.cost:
+		resource_cache.store_resources(res)

@@ -11,7 +11,8 @@ Fun little side project in Godot 4
 - 2: Build tent
 - 3: Build barracks
 ### Placement
-- LMB on valid location
+- LMB on valid location to place
+- Backspace to cancel building and refund costs
 ## Summon units
 - Q: summon cleric
 - W: summon laborer
